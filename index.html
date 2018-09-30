@@ -21,6 +21,7 @@
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
+          stories: 0,
           getPages: function() { 
             return this.pageCount;
           },
@@ -69,8 +70,10 @@
       Toolbox: <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
     </div>
     <div id="paper">
-      <div id="page-1" class="stacked newspaper__page">
-        I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch2</a>!
+      <div id="page-1" class="stacked newspaper__page page-grid">
+        <div class="story-default">
+          
+        </div>
       </div>
     </div>
     <!-- include the Glitch button to show what the webpage is about and

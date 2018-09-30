@@ -28,6 +28,8 @@ function ipsumAdd(charCount){
 
 function addStoryToPage(pageNumber, storyName){
   var page = document.getElementById('page-'+pageNumber); 
+  var newStory = document.createElement('div');
+  var 
   page.innerText += ipsumAdd(300); 
 }
 
