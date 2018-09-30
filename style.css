@@ -9,3 +9,28 @@ h1 {
   font-style: italic;
   color: #373fff;
 }
+
+#paper {
+  width: 620px;
+  height: 1200
+
+.newspaper__page {
+  background: #f9f7f1;
+}
+
+.stacked {
+  background: #f9f7f1;
+  box-shadow:
+    /* The top layer shadow */
+    0 1px 1px rgba(0,0,0,0.15),
+    /* The second layer */
+    0 10px 0 -5px #eee,
+    /* The second layer shadow */
+    0 10px 1px -4px rgba(0,0,0,0.15),
+     /* The third layer */
+    0 20px 0 -10px #eee,
+    /* The third layer shadow */
+    0 20px 1px -9px rgba(0,0,0,0.15);
+    /* Padding for demo purposes */
+    padding: 30px;
+}
