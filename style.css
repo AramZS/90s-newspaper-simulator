@@ -67,3 +67,11 @@ a.shinyButton:hover{
    margin:0.2em auto;
  }
 }
+
+.shinyRed { background-color:#f14e4e }
+.shinyYellow { background-color:#f1bb4e }
+.shinyLime { background-color:#84f14e }
+.shinyGreen { background-color:#4ef18f }
+.shinyBlue { background-color:#4e9af1 }
+.shinyPurple { background-color:#9a4ef1 }
+.shinyPink { background-color:#f14ebd }
