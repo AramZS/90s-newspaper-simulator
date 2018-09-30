@@ -18,6 +18,10 @@
           var event = new CustomEvent('pageValueChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
+        function dispatchStoryChange(dispatchObject){
+          var event = new CustomEvent('storiesChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
@@ -42,7 +46,25 @@
           },
           getBudget: function(){
             return this.totalBudget;
-          }
+          },
+          getStories: function() { 
+            return this.stories;
+          },
+          setStories: function(x) {
+            this.stories = x;
+            this.totalBudget += x*-300;
+            dispatchStoryChange({detail: this.stories});
+          },
+          addStories: function(x) {
+            this.stories += x;
+            this.totalBudget += x*-300;
+            dispatchStoryChange({detail: this.stories});
+          },
+          subtractStories: function(x) {
+            this.pageCount -= x;
+            this.totalBudget -= x*-300;
+            dispatchStoryChange({detail: this.stories});
+          },
         };
         console.log('Current Page Count: ', budgetManager.pageCount);
       
@@ -83,5 +105,9 @@
     <script src="/holder-ipsum.js" defer></script>
         <!-- import the webpage's javascript file -->
     <script src="/script.js" defer></script>
+    
+    <script>
+      addStoryToPage(1, 'story-default');
+    </script>
   </body>
 </html>

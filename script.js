@@ -26,16 +26,29 @@ function ipsumAdd(charCount){
   return HolderIpsum.words(150, false)+'. '+continuation;
 }
 
-function addStoryToPage(pageNumber, storyName){
-  var page = document.getElementById('page-'+pageNumber); 
+function addStoryToPage(pageNumber, storyType){
+  var page = document.getElementById('page-'+pageNumber.toString()); 
   var newStory = document.createElement('div');
-  var 
-  page.innerText += ipsumAdd(300); 
+  newStory.className = storyType;
+  window.budgetManager.addStories(1);
+  newStory.innerText += ipsumAdd(300); 
+  page.appendChild(newStory);
 }
 
+        if (
+            document.readyState === "complete" ||
+            (document.readyState !== "loading" && !document.documentElement.doScroll)
+        ) {
+          scriptInit();
+        } else {
+          document.addEventListener("DOMContentLoaded", scriptInit);
+        }
 
+function scriptInit(){
 
         window.paper.addEventListener('pageValueChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-budget');
           budgetSpan.innerHTML = window.budgetManager.getBudget();
         }, false);
+  
+}
