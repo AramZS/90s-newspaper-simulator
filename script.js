@@ -14,7 +14,13 @@ function pageAdd(){
 }
 
 function ipsumAdd(charCount){
-  return HolderIpsum.words(charCount, false); 
+  if (182 < charCount){
+    var diff = charCount - 182;
+    if (182 < diff){
+      
+    }
+  }
+  return HolderIpsum.words(150, false)+' '+HolderIpsum.words(150, true);
 }
 
         window.paper.addEventListener('pageValueChanged', function(returnedObject){
