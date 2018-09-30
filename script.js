@@ -8,5 +8,4 @@ function pageAdd(){
   var page = document.getElementById('page-1');
   var page_clone = page.cloneNode(false);
   var paper = document.getElementById('paper');
-  
 }
