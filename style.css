@@ -21,10 +21,11 @@ h1 {
 
 .newspaper__page {
   background: #f9f7f1;
+  font-size: 5px;
   width: 300px;
   height: 400px;
   float: left;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
   margin-right: 10px;
 }
 

@@ -13,6 +13,7 @@
     <script>
       function init(){
         var paper = document.getElementById('paper');
+        window.paper = paper;
         function dispatchPageValueChange(dispatchObject){
           var event = new CustomEvent('pageValueChanged', dispatchObject);
           paper.dispatchEvent(event);
@@ -20,26 +21,31 @@
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
-          getPaged: function() { 
+          getPages: function() { 
             return this.pageCount;
           },
           setPages: function(x) {
             this.pageCount = x;
-            this.totalBudget = 
+            this.totalBudget = x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
           },
           addPages: function(x) {
             this.pageCount += x;
+            this.totalBudget += x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
           },
           subtractPages: function(x) {
             this.pageCount -= x;
+            this.totalBudget -= x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
+          },
+          getBudget: function(){
+            return this.totalBudget;
           }
         };
         console.log('Current Page Count: ', budgetManager.pageCount);
       
-        paper.addEventListener('valueChanged', function(returnedObject){
+        paper.addEventListener('pageValueChanged', function(returnedObject){
           console.log('Current Page Count: ', returnedObject.detail);
         }, false);
       }
@@ -53,8 +59,6 @@
         }
     </script>
     
-    <!-- import the webpage's javascript file -->
-    <script src="/script.js" defer></script>
   </head>  
   <body>
     <h1>Newspaper Business Simulator</h1>
@@ -74,5 +78,7 @@
     <div class="glitchButton" style="position:fixed;top:20px;right:20px;"></div>
     <script src="https://button.glitch.me/button.js"></script>
     <script src="/holder-ipsum.js" defer></script>
+        <!-- import the webpage's javascript file -->
+    <script src="/script.js" defer></script>
   </body>
 </html>

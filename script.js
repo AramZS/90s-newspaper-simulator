@@ -9,10 +9,15 @@ function pageAdd(){
   var page_clone = page.cloneNode(false);
   var paper = document.getElementById('paper');
   page_clone.setAttribute('id', 'page-'+window.budgetManager.getPages());
-  window.budgetManager.addPages(1)
+  window.budgetManager.addPages(1);
   paper.appendChild(page_clone);
 }
 
 function ipsumAdd(charCount){
   return HolderIpsum.words(charCount, false); 
 }
+
+        window.paper.addEventListener('pageValueChanged', function(returnedObject){
+          var budgetSpan = document.getElementById('total-budget');
+          budgetSpan.innerHTML = window.budgetManager.getBudget();
+        }, false);
