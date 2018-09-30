@@ -4,9 +4,9 @@
 // prints "hi" in the browser's dev tools console
 console.log('hi');
 
-function pageAdd(){
+function pageAdd() {
   var page = document.getElementById('page-1');
   var page_clone = page.cloneNode(false);
   var paper = document.getElementById('paper');
-  
+  paper.appendChild(page_clone);
 }
