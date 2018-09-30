@@ -14,32 +14,31 @@
       function init(){
         var paper = document.getElementById('paper');
         function dispatchValueChange(dispatchObject){
-          var event = new Event('valueChanged', dispatchObject);
+          var event = new CustomEvent('valueChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
-        window.pageCount = {};
-        Object.defineProperties(window.pageCount, {
+        window.pageCount = {
           count: 1,
           get: function() { 
             return this.count;
           },
           set: function(x) {
             this.count = x;
-            dispatchValueChange({theCount: this.count});
+            dispatchValueChange({detail: this.count});
           },
           add: function(x) {
             this.count += x;
-            dispatchValueChange({theCount: this.count});
+            dispatchValueChange({detail: this.count});
           },
           subtract: function(x) {
             this.count -= x;
-            dispatchValueChange({theCount: this.count});
+            dispatchValueChange({detail: this.count});
           }
-        });
+        };
         console.log('Current Page Count: ', pageCount);
       
         paper.addEventListener('valueChanged', function(returnedObject){
-          console.log('Current Page Count: ', returnedObject.theCount);
+          console.log('Current Page Count: ', returnedObject.detail);
         }, false);
       }
         if (
