@@ -11,7 +11,24 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     <script>
-        var pageCount = 1;
+        window.pageCount = {
+          count: 1,
+          get: function() { 
+            return this.count;
+          },
+          set: function(x) {
+            this.count = x;
+            new Event('valueChanged', {theCount: this.count});
+          },
+          add: function(x) {
+            this.count += x;
+            new Event('valueChanged', {theCount: this.count});
+          },
+          subtract: function(x) {
+            this.count -= x;
+            new Event('valueChanged', {theCount: this.count});
+          }
+        };
         console.log('Current Page Count: ', pageCount);
     </script>
     
@@ -20,7 +37,12 @@
   </head>  
   <body>
     <h1>Newspaper Business Simulator</h1>
-    
+    <h4>
+      Newspaper Budget: 
+    </h4>
+    <div>
+      Toolbox: 
+    </div>
     <div id="paper">
       <div id="page-1" class="stacked newspaper__page">
         I'm your cool new webpage. Made with <a href="https://glitch.com">Glitch2</a>!
