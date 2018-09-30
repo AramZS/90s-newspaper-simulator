@@ -15,6 +15,10 @@ h1 {
   height: 1200px;
 }
 
+#toolbox {
+  margin-bottom: 18px;
+}
+
 .newspaper__page {
   background: #f9f7f1;
   width: 300px;
