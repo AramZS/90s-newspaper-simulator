@@ -29,7 +29,7 @@ function ipsumAdd(charCount){
 function addStoryToPage(pageNumber, storyType){
   var page = document.getElementById('page-'+pageNumber.toString()); 
   var newStory = document.createElement('div');
-  newStory.className = storyType;
+  newStory.className = 'story '+storyType;
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(300); 
   page.appendChild(newStory);
@@ -46,9 +46,10 @@ function addStoryToPage(pageNumber, storyType){
 
 function scriptInit(){
 
-        window.paper.addEventListener('pageValueChanged', function(returnedObject){
+        window.paper.addEventListener('budgetChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-budget');
           budgetSpan.innerHTML = window.budgetManager.getBudget();
         }, false);
+        window.commandSet.push(function(){ addStoryToPage(1, 'story-default'); });
   
 }

@@ -87,7 +87,11 @@ button.shinyButton:hover{
 .shinyPurple { background-color:#9a4ef1 }
 .shinyPink { background-color:#f14ebd }
 
+.story {
+  text-align: justify;
+}
+
 .story-default {
     grid-column: 1 / 3;
-    grid-row: 2;
+    grid-row: 1;
 }

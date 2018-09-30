@@ -11,6 +11,7 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     <script>
+      window.commandSet = [];
       function init(){
         var paper = document.getElementById('paper');
         window.paper = paper;
@@ -20,6 +21,10 @@
         }
         function dispatchStoryChange(dispatchObject){
           var event = new CustomEvent('storiesChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
+        function dispatchBudgetChange(dispatchObject){
+          var event = new CustomEvent('budgetChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
         window.budgetManager = {
@@ -33,16 +38,19 @@
             this.pageCount = x;
             this.totalBudget = x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           addPages: function(x) {
             this.pageCount += x;
             this.totalBudget += x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractPages: function(x) {
             this.pageCount -= x;
             this.totalBudget -= x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           getBudget: function(){
             return this.totalBudget;
@@ -54,16 +62,19 @@
             this.stories = x;
             this.totalBudget += x*-300;
             dispatchStoryChange({detail: this.stories});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           addStories: function(x) {
             this.stories += x;
             this.totalBudget += x*-300;
             dispatchStoryChange({detail: this.stories});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractStories: function(x) {
             this.pageCount -= x;
             this.totalBudget -= x*-300;
             dispatchStoryChange({detail: this.stories});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
         };
         console.log('Current Page Count: ', budgetManager.pageCount);
@@ -71,6 +82,13 @@
         paper.addEventListener('pageValueChanged', function(returnedObject){
           console.log('Current Page Count: ', returnedObject.detail);
         }, false);
+        
+        window.commandSet.forEach(function(callback){ callback();  });
+        window.commandSet = {
+          push: function(callback){
+            callback();
+          }
+        };
       }
         if (
             document.readyState === "complete" ||
@@ -107,7 +125,7 @@
     <script src="/script.js" defer></script>
     
     <script>
-      addStoryToPage(1, 'story-default');
+      
     </script>
   </body>
 </html>
