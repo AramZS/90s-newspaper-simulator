@@ -29,6 +29,13 @@ h1 {
   margin-right: 10px;
 }
 
+.page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+
 .stacked {
   background: #f9f7f1;
   box-shadow:
