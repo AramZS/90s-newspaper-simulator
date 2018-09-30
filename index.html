@@ -11,25 +11,45 @@
     <!-- import the webpage's stylesheet -->
     <link rel="stylesheet" href="/style.css">
     <script>
-        window.pageCount = {
+      function init(){
+        var paper = document.getElementById('paper');
+        function dispatchValueChange(dispatchObject){
+          var event = new Event('valueChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
+        window.pageCount = {};
+        Object.defineProperties(window.pageCount, {
           count: 1,
           get: function() { 
             return this.count;
           },
           set: function(x) {
             this.count = x;
-            new Event('valueChanged', {theCount: this.count});
+            dispatchValueChange({theCount: this.count});
           },
           add: function(x) {
             this.count += x;
-            new Event('valueChanged', {theCount: this.count});
+            dispatchValueChange({theCount: this.count});
           },
           subtract: function(x) {
             this.count -= x;
-            new Event('valueChanged', {theCount: this.count});
+            dispatchValueChange({theCount: this.count});
           }
-        };
+        });
         console.log('Current Page Count: ', pageCount);
+      
+        paper.addEventListener('valueChanged', function(returnedObject){
+          console.log('Current Page Count: ', returnedObject.theCount);
+        }, false);
+      }
+        if (
+            document.readyState === "complete" ||
+            (document.readyState !== "loading" && !document.documentElement.doScroll)
+        ) {
+          init();
+        } else {
+          document.addEventListener("DOMContentLoaded", init);
+        }
     </script>
     
     <!-- import the webpage's javascript file -->

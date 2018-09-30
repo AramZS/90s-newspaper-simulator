@@ -4,6 +4,3 @@
 // prints "hi" in the browser's dev tools console
 console.log('hi');
 
-window.pageCount.addEventListener('valueChanged', function(returnedObject){
-  console.log('Current Page Count: ', returnedObject.theCount);
-}, false);
