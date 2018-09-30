@@ -14,14 +14,24 @@ function pageAdd(){
 }
 
 function ipsumAdd(charCount){
+  var continuation = '';
   if (182 < charCount){
     var diff = charCount - 182;
     if (182 < diff){
-      
+        continuation = ipsumAdd(diff);
+    } else {
+      continuation = HolderIpsum.words(diff, true);
     }
   }
-  return HolderIpsum.words(150, false)+' '+HolderIpsum.words(150, true);
+  return HolderIpsum.words(150, false)+'. '+continuation;
 }
+
+function addStoryToPage(pageNumber, storyName){
+  var page = document.getElementById('page-'+pageNumber); 
+  page.innerText += ipsumAdd(300); 
+}
+
+
 
         window.paper.addEventListener('pageValueChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-budget');
