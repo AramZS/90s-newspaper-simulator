@@ -26,6 +26,8 @@ h1 {
   /* position: absolute; */
   width: 18%;
   left: 34px;
+  border-width: 2px 2px 0 2px;
+  border-color: black #f2e3e3 black black
 }
 
 .newspaper__page {
@@ -120,8 +122,13 @@ button.shinyButton:hover{
 }
 
 .story-preview {
-    width: 160px;
+    width: 154px;
     margin: 1px;
-    height: 158px;
+  margin-top: 10px;
+    height: 152px;
     float: left;
+  padding: 1px;
+    background: #f9f7f1;
+    font-size: 5px;
+    border: 1px #ffc900 dashed;
 }

@@ -36,10 +36,10 @@ function addStoryToPage(pageNumber, storyType){
   page.appendChild(newStory);
 }
 
-function addStoryToToolbox(pageNumber, storyType){
+function addStoryToToolbox(){
   var toolbox = document.getElementById('toolbox'); 
   var newStory = document.createElement('div');
-  newStory.className = 'story '+storyType;
+  newStory.className = 'story story-preview';
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275);
   toolbox.appendChild(newStory);
