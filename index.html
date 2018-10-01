@@ -91,7 +91,7 @@
             return this.valueOfAdSquare;
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = 50*((this.distribution/1000)+1);
+            this.valueOfAdSquare = 50*((this.distribution/1000));
             dispatchAdValueChange({detail: this.valueOfAdSquare});
           },
           addValueOfAd: function(x) {
@@ -124,6 +124,9 @@
             this.wordcount += x;
             if ((this.wordcount % 1375) == 0){
               this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
+              this.addDistribution(this.storyDistributionFactor);
+            }
+            if ((this.wordcount % 13750) == 0){
               this.addDistribution(this.storyDistributionFactor);
             }
           },

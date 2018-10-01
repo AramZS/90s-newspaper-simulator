@@ -72,6 +72,27 @@ function addNewAdToPage(pageNumber, adType){
   page.appendChild(newAd);
 }
 
+function breakEven(){
+  pageAdd();
+  pageAdd();
+  pageAdd();
+  pageAdd();
+  addNewStoryToPage(2, 'story-skinny');
+  addNewStoryToPage(1, 'story-skinny');
+  addNewStoryToPage(4, 'story-default');
+  addNewStoryToPage(1, 'story-default');
+  addNewStoryToPage(2, 'story-default');
+  addNewAdToPage(3, 'full-page');
+  addNewAdToPage(5, 'full-page');
+  addNewAdToPage(1, 'full-width');
+  addNewAdToPage(2, 'full-width');
+  addNewAdToPage(2, 'three-quarter');
+  addNewAdToPage(4, 'full-height');
+  addNewAdToPage(4, 'three-quarter');
+  addNewAdToPage(4, 'small-square');
+  addNewAdToPage(4, 'small-square');
+}
+
         if (
             document.readyState === "complete" ||
             (document.readyState !== "loading" && !document.documentElement.doScroll)
