@@ -136,3 +136,21 @@ button.shinyButton:hover{
     font-size: 5px;
     border: 1px #ffc900 dashed;
 }
+
+.ad-small-square {
+  grid-column: auto / span 1;  
+  grid-row: auto / span 1;
+  background: #f2e3e3;
+}
+
+.ad-full-width {
+  grid-column: auto / span 3;  
+  grid-row: auto / span 1;
+  background: #b5f0e3; 
+}
+
+.ad-full-width {
+  grid-column: auto / span 3;  
+  grid-row: auto / span 1;
+  background: #b5f0e3; 
+}

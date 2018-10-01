@@ -48,6 +48,20 @@ function addStoryToToolbox(){
 }
 
 function addAdToToolbox(){
+  var toolbox = document.getElementById('toolbox'); 
+  var newAd = document.createElement('div');
+  newAd.id = 'ad-'+window.budgetManager.getAdCount();
+  newAd.className = 'ad ad-preview';
+  toolbox.appendChild(newAd);
+}
+
+function addNewAdToPage(pageNumber, adType){
+  var page = document.getElementById('page-'+pageNumber.toString()); 
+  var newAd = document.createElement('div');
+  newAd.id = 'ad-'+window.budgetManager.getAdCount();
+  window.budgetManager.addAdCount(1);
+  newAd.className = 'ad ad-'+adType;
+  page.appendChild(newAd);
 }
 
         if (
@@ -69,6 +83,6 @@ function scriptInit(){
           var budgetSpan = document.getElementById('total-distribution');
           budgetSpan.innerHTML = window.budgetManager.getDistribution();
         }, false);
-        window.commandSet.push(function(){ addStoryToPage(1, 'story-default'); });
+        window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
   
 }
