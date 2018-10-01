@@ -154,6 +154,6 @@ function scriptInit(){
           }
         }, false);
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
-        new Draggable(document.getElementById('page-1'));
+        window.draggableObj = new Draggable(document.getElementById('page-1'));
   
 }
