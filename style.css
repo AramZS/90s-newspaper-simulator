@@ -130,9 +130,9 @@ button.shinyButton:hover{
     height: 152px;  
 }
 
-.story-preview {
+#toolbox_grid > .story {
     margin: 1px;
-  margin-top: 10px;\
+  margin-top: 10px;
     float: left;
   padding: 1px;
     background: #f9f7f1;
@@ -181,6 +181,12 @@ button.shinyButton:hover{
       width: 154px;
 }
 
+.page_grid > .story {
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
 #toolbox_grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -188,9 +194,10 @@ button.shinyButton:hover{
     grid-auto-rows: 80px;
     grid-auto-flow: dense;
     grid-auto-columns: 80px;
+    min-height: 200px
 }
 
-.ad-preview {
+#toolbox_grid > .ad {
     margin: 1px;
   margin-top: 10px;
     float: left;

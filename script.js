@@ -7,9 +7,11 @@ console.log('hi');
 function pageAdd(){
   var page = document.getElementById('page-1');
   var page_clone = page.cloneNode(false);
+  
   var paper = document.getElementById('paper');
   window.budgetManager.addPages(1);
   page_clone.setAttribute('id', 'page-'+window.budgetManager.getPages());
+  page_clone.setAttribute('data-page-number', window.budgetManager.getPages());
   paper.appendChild(page_clone);
 }
 
@@ -177,6 +179,10 @@ function scriptInit(){
   
         window.draggableObjects.mainObject.on('drag:over:container', function(e){
           console.log('toolboxDrag Over Container', e);
+          if (e.data.originalSource != e.data.overContainer){
+            console.log('container move attempt');
+            e.data.overContainer.appendChild(e.data.source);
+          }
         });
 }
 
@@ -194,7 +200,8 @@ function scrap(){
         window.draggableToolboxObj.on('drag:over', function(e){
           console.log('toolboxDrag Over', e);
           if (e.data.originalSource != e.data.overContainer){
-            e.data.overContainer(e.data.source);
+            console.log('container move attempt');
+            e.data.overContainer.appendChild(e.data.source);
           }
         });
 }
