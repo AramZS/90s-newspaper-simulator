@@ -11,12 +11,21 @@ h1 {
 }
 
 #paper {
-  width: 940px;
+  width: 80%;
   height: 1200px;
+  margin-left: 20%;
+  overflow: visible;
 }
 
 #toolbox {
   margin-bottom: 18px;
+  float: left;
+  margin-right: 2%;
+  height: 100%;
+  display: block;
+  /* position: absolute; */
+  width: 18%;
+  left: 34px;
 }
 
 .newspaper__page {
