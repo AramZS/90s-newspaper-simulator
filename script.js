@@ -38,7 +38,7 @@ function addNewStoryToPage(pageNumber, storyType){
 }
 
 function addStoryToToolbox(){
-  var toolbox = document.getElementById('toolbox'); 
+  var toolbox = document.getElementById('toolbox_grid'); 
   var newStory = document.createElement('div');
   newStory.id = 'story-'+window.budgetManager.getStories();
   newStory.className = 'story story-preview';
@@ -49,7 +49,7 @@ function addStoryToToolbox(){
 }
 
 function addAdToToolbox(){
-  var toolbox = document.getElementById('toolbox'); 
+  var toolbox = document.getElementById('toolbox_grid'); 
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
   newAd.className = 'ad ad-preview';
