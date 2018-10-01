@@ -26,7 +26,7 @@ function ipsumAdd(charCount){
   return HolderIpsum.words(150, false)+'. '+continuation;
 }
 
-function addStoryToPage(pageNumber, storyType){
+function addNewStoryToPage(pageNumber, storyType){
   var page = document.getElementById('page-'+pageNumber.toString()); 
   var newStory = document.createElement('div');
   newStory.className = 'story '+storyType;
@@ -40,10 +40,14 @@ function addStoryToPage(pageNumber, storyType){
 function addStoryToToolbox(){
   var toolbox = document.getElementById('toolbox'); 
   var newStory = document.createElement('div');
+  newStory.id = 'story-'+window.budgetManager.getStories();
   newStory.className = 'story story-preview';
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275);
   toolbox.appendChild(newStory);
+}
+
+function addAdToToolbox(){
 }
 
         if (

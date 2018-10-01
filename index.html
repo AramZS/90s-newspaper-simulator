@@ -35,6 +35,10 @@
           var event = new CustomEvent('adValueChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
+        function dispatchAdCountChange(dispatchObject){
+          var event = new CustomEvent('adCountChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
@@ -44,6 +48,7 @@
           pageDistributionFactor: 500,
           storyDistributionFactor: 750,
           wordcount: 0,
+          adCount: 0,
           pages: [
                   { wordcount: 0 } 
                  ],
@@ -93,6 +98,22 @@
           subtractValueOfAd: function(x) {
             this.valueOfAdSquare -= x;
             dispatchAdValueChange({detail: this.valueOfAdSquare});
+          },
+          
+          getAdCount: function() { 
+            return this.adCount;
+          },
+          addAdCount: function(x) {
+            this.adCount += x;
+            this.totalBudget += (x) * this.valueOfAdSquare;
+            dispatchBudgetChange({detail: this.totalBudget});
+            dispatchAdCountChange({detail: this.adCount});
+          },
+          subtractAdCount: function(x) {
+            this.adCount -= x;
+            this.totalBudget -= (x) * this.valueOfAdSquare;
+            dispatchBudgetChange({detail: this.totalBudget});
+            dispatchAdCountChange({detail: this.adCount});
           },
           
           getTotalWordCount: function() { 
