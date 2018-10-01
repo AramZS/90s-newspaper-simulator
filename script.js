@@ -33,6 +33,7 @@ function addStoryToPage(pageNumber, storyType){
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275); 
   window.budgetManager.pages[(pageNumber-1)].wordcount += 275
+  window.budgetManager.addWordcount(275);
   page.appendChild(newStory);
 }
 

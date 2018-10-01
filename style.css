@@ -1,4 +1,6 @@
 /* CSS files add styling rules to your content */
+html, body { height: 100%; }
+
 
 body {
   font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
@@ -19,15 +21,17 @@ h1 {
 
 #toolbox {
   margin-bottom: 18px;
+  padding-bottom: 10px;
   float: left;
   margin-right: 2%;
-  height: 100%;
+  min-height: 100%;
   display: block;
   /* position: absolute; */
   width: 18%;
   left: 34px;
-  border-width: 2px 2px 0 2px;
-  border-color: black #f2e3e3 black black
+  border-width: 2px 2px 0 0px;
+  border-color: black #f2e3e3 black black;
+  border-style: solid;
 }
 
 .newspaper__page {

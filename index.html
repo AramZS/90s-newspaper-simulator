@@ -42,6 +42,7 @@
           distribution: 1000,
           valueOfAdSquare: 50,
           pageDistributionFactor: 500,
+          wordcount: 0,
           pages: [
                   { wordcount: 0 } 
                  ],
@@ -91,6 +92,15 @@
           subtractValueOfAd: function(x) {
             this.valueOfAdSquare -= x;
             dispatchAdValueChange({detail: this.valueOfAdSquare});
+          },
+          
+          getTotalWordCount: function() { 
+            return this.wordcount;
+          },
+          addWordcount: function(x) {
+            var oldWordcount = this.wordcount;
+            this.wordcount += x;
+            if (this.wordcount / 
           },
           
           getDistribution: function() { 
