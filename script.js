@@ -188,14 +188,14 @@ function scriptInit(){
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
             //window.draggableObjects.sample = e.data.source.cloneNode(false);
-            e.data.overContainer.appendChild(window.draggableObjects.sample);
+            e.data.overContainer.appendChild(e.data.source);
             window.draggableObjects.previouslyOver = e.data.overContainer;
           }
         });
   
         window.draggableObjects.mainObject.on('drag:stop', function(e){
           console.log('Drag stop Container', e);
-          window.draggableObjects.sample.remove();
+          //window.draggableObjects.sample.remove();
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
             // e.data.overContainer.appendChild(e.data.source);
