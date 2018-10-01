@@ -42,7 +42,6 @@
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
-          totalAdSales: 0,
           stories: 0,
           distribution: 1000,
           valueOfAdSquare: 50,
@@ -82,14 +81,17 @@
           },
           
           getBudget: function(){
-            return this.totalBudget;
+            return this.totalBudget+this.totalAdSales();
+          },
+          totalAdSales: function(){
+            return this.getAdCount() * this.getValueOfAd();
           },
           
           getValueOfAd: function() { 
             return this.valueOfAdSquare;
           },
-          setValueOfAd: function(x) {
-            this.valueOfAdSquare = x;
+          setValueOfAd: function() {
+            this.valueOfAdSquare = 50*((this.distribution/1000)+1);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
           },
           addValueOfAd: function(x) {
@@ -106,14 +108,12 @@
           },
           addAdCount: function(x) {
             this.adCount += x;
-            this.totalBudget += (x) * this.valueOfAdSquare;
-            dispatchBudgetChange({detail: this.totalBudget});
+            dispatchBudgetChange({detail: this.getBudget()});
             dispatchAdCountChange({detail: this.adCount});
           },
           subtractAdCount: function(x) {
             this.adCount -= x;
-            this.totalBudget -= (x) * this.valueOfAdSquare;
-            dispatchBudgetChange({detail: this.totalBudget});
+            dispatchBudgetChange({detail: this.getBudget()});
             dispatchAdCountChange({detail: this.adCount});
           },
           
@@ -133,14 +133,14 @@
           },
           addDistribution: function(x) {
             this.distribution += x;
-            this.addValueOfAd(50*((x/1000)+1));
+            this.setValueOfAd();
             this.totalBudget += (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
             this.distribution -= x;
-            this.subtractValueOfAd(50*(x/1000));
+            this.setValueOfAd();
             this.totalBudget -= (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
