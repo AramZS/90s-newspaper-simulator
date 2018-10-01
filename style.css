@@ -173,11 +173,22 @@ button.shinyButton:hover{
   background: #f5dac6; 
 }
 
+.old-ad-preview {
+    height: 152px;
+      width: 154px;
+}
+
+#toolbox_grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2px;
+    grid-auto-rows: minmax(80px, auto);
+    grid-auto-flow: dense;
+}
+
 .ad-preview {
-    width: 154px;
     margin: 1px;
   margin-top: 10px;
-    height: 152px;
     float: left;
   padding: 1px;
     background: #f9f7f1;
@@ -185,5 +196,7 @@ button.shinyButton:hover{
     border: 1px #9a4ef1 solid;
   text-align: center;
 vertical-align: middle;
-  line-height: 152px; 
+    overflow: hidden;
+    padding-top: 15px;
+
 }

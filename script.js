@@ -52,7 +52,7 @@ function addAdToToolbox(){
   var toolbox = document.getElementById('toolbox_grid'); 
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
-  newAd.className = 'ad ad-preview';
+  newAd.className = 'ad ad-preview ad-small-square';
   newAd.innerText = 'Ad';
   toolbox.appendChild(newAd);
   window.toolboxManager.adCount += 1;
@@ -154,5 +154,6 @@ function scriptInit(){
           }
         }, false);
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
+        new Draggable(document.getElementById('page-1'));
   
 }
