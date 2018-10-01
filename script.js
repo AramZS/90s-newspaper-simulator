@@ -193,6 +193,8 @@ function scrap(){
         });
         window.draggableToolboxObj.on('drag:over', function(e){
           console.log('toolboxDrag Over', e);
-          if (e.data.originalSource 
+          if (e.data.originalSource != e.data.overContainer){
+            e.data.overContainer(e.data.source);
+          }
         });
 }
