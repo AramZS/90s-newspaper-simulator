@@ -8,8 +8,8 @@ function pageAdd(){
   var page = document.getElementById('page-1');
   var page_clone = page.cloneNode(false);
   var paper = document.getElementById('paper');
-  page_clone.setAttribute('id', 'page-'+window.budgetManager.getPages());
   window.budgetManager.addPages(1);
+  page_clone.setAttribute('id', 'page-'+window.budgetManager.getPages());
   paper.appendChild(page_clone);
 }
 
@@ -62,6 +62,7 @@ function addNewAdToPage(pageNumber, adType){
   var adSquareCount = 1;
   if ( 'small-square' !== adType ){
       if ('three-quarter'){ adSquareCount = 2; }
+      if ('three-quarter-column'){ adSquareCount = 2; }
       if ('full-height'){ adSquareCount = 3; }
       if ('full-width'){ adSquareCount = 3; }
       if ('full-page'){ adSquareCount = 9; }

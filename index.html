@@ -42,6 +42,7 @@
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
+          totalAdSales: 0,
           stories: 0,
           distribution: 1000,
           valueOfAdSquare: 50,
@@ -132,7 +133,7 @@
           },
           addDistribution: function(x) {
             this.distribution += x;
-            this.addValueOfAd(50*(x/1000));
+            this.addValueOfAd(50*((x/1000)+1));
             this.totalBudget += (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});

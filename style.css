@@ -166,3 +166,9 @@ button.shinyButton:hover{
   grid-row: auto / span 1;
   background: #e1d8da; 
 }
+
+.ad-three-quarter-column {
+  grid-column: auto / span 1;  
+  grid-row: auto / span 2;
+  background: #e1d8da; 
+}
