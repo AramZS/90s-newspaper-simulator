@@ -41,7 +41,7 @@
         }
         window.budgetManager = {
           pageCount: 1,
-          totalBudget: -6500,
+          totalBudget: -5000,
           stories: 0,
           distribution: 1000,
           valueOfAdSquare: 50,
@@ -59,13 +59,13 @@
           },
           setPages: function(x) {
             this.pageCount = x;
-            this.totalBudget = x*-2000;
+            //this.totalBudget = x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           addPages: function(x) {
             this.pageCount += x;
-            this.totalBudget += x*-2000;
+            //this.totalBudget += x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.push( { wordcount: 0 } );
@@ -79,14 +79,14 @@
           },
           subtractPages: function(x) {
             this.pageCount -= x;
-            this.totalBudget -= x*-2000;
+            //this.totalBudget -= x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.pop( { wordcount: 0 } );
           },
           
           getBudget: function(){
-            return this.totalBudget+this.totalAdSales();
+            return this.totalBudget+this.totalAdSales()+((this.pageCount*-2000)+(this.stories*(this.storyCost*-1)));
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -148,14 +148,14 @@
           addDistribution: function(x) {
             this.distribution += x;
             this.setValueOfAd();
-            this.totalBudget += (x)*-1;
+            this.totalBudget += (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
             this.distribution -= x;
             this.setValueOfAd();
-            this.totalBudget -= (x)*-1;
+            this.totalBudget -= (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
@@ -165,19 +165,19 @@
           },
           setStories: function(x) {
             this.stories = x;
-            this.totalBudget += x*-this.storyCost;
+            // this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           addStories: function(x) {
             this.stories += x;
-            this.totalBudget += x*-this.storyCost;
+            // this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractStories: function(x) {
             this.pageCount -= x;
-            this.totalBudget -= x*-this.storyCost;
+            // this.totalBudget -= x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
