@@ -72,25 +72,30 @@ function addNewAdToPage(pageNumber, adType){
   page.appendChild(newAd);
 }
 
-function breakEven(){
+function breakEven(iteration){
+  var iterationFactor = ((iteration*5)-5)+1;
+  if (iteration > 1){
+    pageAdd();
+    addNewStoryToPage(iterationFactor, 'story-default');
+  }
   pageAdd();
   pageAdd();
   pageAdd();
   pageAdd();
-  addNewStoryToPage(2, 'story-skinny');
-  addNewStoryToPage(1, 'story-skinny');
-  addNewStoryToPage(4, 'story-default');
-  addNewStoryToPage(1, 'story-default');
-  addNewStoryToPage(2, 'story-default');
-  addNewAdToPage(3, 'full-page');
-  addNewAdToPage(5, 'full-page');
-  addNewAdToPage(1, 'full-width');
-  addNewAdToPage(2, 'full-width');
-  addNewAdToPage(2, 'three-quarter');
-  addNewAdToPage(4, 'full-height');
-  addNewAdToPage(4, 'three-quarter');
-  addNewAdToPage(4, 'small-square');
-  addNewAdToPage(4, 'small-square');
+  addNewStoryToPage(iterationFactor+1, 'story-skinny');
+  addNewStoryToPage(iterationFactor, 'story-skinny');
+  addNewStoryToPage(iterationFactor+3, 'story-default');
+  addNewStoryToPage(iterationFactor, 'story-default');
+  addNewStoryToPage(iterationFactor+1, 'story-default');
+  addNewAdToPage(iterationFactor+2, 'full-page');
+  addNewAdToPage(iterationFactor+4, 'full-page');
+  addNewAdToPage(iterationFactor, 'full-width');
+  addNewAdToPage(iterationFactor+1, 'full-width');
+  addNewAdToPage(iterationFactor+1, 'three-quarter');
+  addNewAdToPage(iterationFactor+3, 'full-height');
+  addNewAdToPage(iterationFactor+3, 'three-quarter');
+  addNewAdToPage(iterationFactor+3, 'small-square');
+  addNewAdToPage(iterationFactor+3, 'small-square');
 }
 
         if (
