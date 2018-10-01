@@ -91,20 +91,19 @@
           getDistribution: function() { 
             return this.distribution;
           },
-          setDistribution: function(x) {
-            this.distribution = x;
-            this.setValueOfAd(50*(x/1000));
-            dispatchDistributionChange({detail: this.distribution});
-          },
           addDistribution: function(x) {
             this.distribution += x;
             this.setValueOfAd(50*(x/(this.distribution)));
+            this.totalBudget += (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
             this.distribution -= x;
             this.setValueOfAd(50*(x/(this.distribution)));
+            this.totalBudget -= (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
+            dispatchBudgetChange({detail: this.totalBudget});
           },
           
           getStories: function() { 
@@ -156,15 +155,14 @@
   <body>
     <h1>Newspaper Business Simulator</h1>
     <h4>
-      Newspaper Budget: $<span id="total-budget">-1000</span>
+      Newspaper Budget: $<span id="total-budget">-1000</span> | Newspaper Distribution: <span id="total-distribution">1000</span>
     </h4>
     <div id="toolbox">
       <h5>
         Toolbox: </h5>
       <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
-      <button class="shinyButton shinyBlue" onclick="pageAdd()">Commission Story</button>
-      <button class="shinyButton shinyBlue" onclick="pageAdd()">Sell Ad</button>
-      <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
+      <button class="shinyButton shinyLime" onclick="pageAdd()">Commission Story</button>
+      <button class="shinyButton shinyPurple" onclick="pageAdd()">Sell Ad</button>
     </div>
     <div id="paper">
       <div id="page-1" class="stacked newspaper__page page-grid">

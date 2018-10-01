@@ -51,6 +51,10 @@ function scriptInit(){
           var budgetSpan = document.getElementById('total-budget');
           budgetSpan.innerHTML = window.budgetManager.getBudget();
         }, false);
+        window.paper.addEventListener('distributionChanged', function(returnedObject){
+          var budgetSpan = document.getElementById('total-distribution');
+          budgetSpan.innerHTML = window.budgetManager.getDistribution();
+        }, false);
         window.commandSet.push(function(){ addStoryToPage(1, 'story-default'); });
   
 }
