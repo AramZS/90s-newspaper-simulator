@@ -73,7 +73,7 @@
               this.pageDistributionFactor = 2000 * (this.pageCount/3);
             }
             if (this.pageCount % 10 === 0){
-              this.distributionFactor += 1;
+              this.distributionFactor += 5;
             }
             this.addDistribution(this.pageDistributionFactor);
           },
@@ -86,7 +86,7 @@
           },
           
           getBudget: function(){
-            return this.totalBudget+this.totalAdSales()+((this.pageCount*-2000)+(this.stories*(this.storyCost*-1)));
+            return this.totalBudget+this.totalAdSales()+((this.pageCount*-3000)+(this.stories*(this.storyCost*-1)));
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -133,11 +133,11 @@
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 2750) == 0){
-              this.storyCost += 250;
+              this.storyCost += 550;
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 13750) == 0){
-              this.storyCost += 450;
+              this.storyCost += 850;
               this.addDistribution(this.storyDistributionFactor*2);
             }
           },
@@ -213,7 +213,7 @@
   <body>
     <h1>Newspaper Business Simulator</h1>
     <h4>
-      Newspaper Budget: $<span id="total-budget">-1000</span> | Newspaper Distribution: <span id="total-distribution">1000</span>
+      Newspaper Net Profit: $<span id="total-budget">-1000</span> | Newspaper Distribution: <span id="total-distribution">1000</span>
     </h4>
     <div id="toolbox">
       <h5>
