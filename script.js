@@ -29,7 +29,7 @@ function ipsumAdd(charCount){
 function addNewStoryToPage(pageNumber, storyType){
   var page = document.getElementById('page-'+pageNumber.toString()); 
   var newStory = document.createElement('div');
-  newStory.className = 'story '+storyType;
+  newStory.className = 'isDraggable story '+storyType;
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275); 
   window.budgetManager.pages[(pageNumber-1)].wordcount += 275
@@ -159,7 +159,8 @@ function scriptInit(){
           mirror: {
             appendTo: 'page-1',
             constrainDimensions: true
-          }
+          },
+          plugins: [window.Draggable.Plugins.Snappable]
         });
   
 }
