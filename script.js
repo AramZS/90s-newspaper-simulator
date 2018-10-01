@@ -31,8 +31,8 @@ function addStoryToPage(pageNumber, storyType){
   var newStory = document.createElement('div');
   newStory.className = 'story '+storyType;
   window.budgetManager.addStories(1);
-  newStory.innerText += ipsumAdd(300); 
-  window.budgetManager.pages[(pageNumber-1)].wordcount += 300;
+  newStory.innerText += ipsumAdd(275); 
+  window.budgetManager.pages[(pageNumber-1)].wordcount += 275
   page.appendChild(newStory);
 }
 

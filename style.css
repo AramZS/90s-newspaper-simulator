@@ -88,11 +88,13 @@ button.shinyButton:hover{
   grid-gap: 10px;
   grid-auto-rows: minmax(84px, 138px);
   grid-auto-flow: dense;
+  grid-template-rows: repeat(3, 1fr);
 }
 
 
 .story {
   text-align: justify;
+  overflow: hidden;
 }
 
 .story-default {
@@ -101,6 +103,7 @@ button.shinyButton:hover{
 
 .story-skinny {
   grid-column: auto / span 1;  
+  grid-row: auto / span 2;
 }
 
 .story-wide {
