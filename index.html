@@ -39,6 +39,10 @@
           var event = new CustomEvent('adCountChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
+        window.toolboxManager = {
+          adCount: 0,
+          storyCount: 0
+        };
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -5000,
@@ -52,7 +56,7 @@
           adCount: 0,
           distributionFactor: 1,
           pages: [
-                  { wordcount: 0 } 
+                  { wordcount: 0, adCount: 0 } 
                  ],
           getPages: function() { 
             return this.pageCount;
@@ -68,7 +72,7 @@
             //this.totalBudget += x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
-            this.pages.push( { wordcount: 0 } );
+            this.pages.push( { wordcount: 0, adCount: 0 } );
             if (this.pageCount % 3 === 0){
               this.pageDistributionFactor = 2000 * (this.pageCount/3);
             }
@@ -218,9 +222,12 @@
     <div id="toolbox">
       <h5>
         Toolbox: </h5>
-      <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
-      <button class="shinyButton shinyLime" onclick="addStoryToToolbox()">Commission Story</button>
-      <button class="shinyButton shinyPurple" onclick="addAdToToolbox()">Sell Ad</button>
+      <div id="toolbox__buttons">
+        
+        <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
+        <button class="shinyButton shinyLime" onclick="addStoryToToolbox()">Commission Story</button>
+        <button class="shinyButton shinyPurple" onclick="addAdToToolbox()">Sell Ad</button>
+      </div>
     </div>
     <div id="paper">
       <div id="page-1" class="stacked newspaper__page page-grid">

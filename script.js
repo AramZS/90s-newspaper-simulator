@@ -45,6 +45,7 @@ function addStoryToToolbox(){
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275);
   toolbox.appendChild(newStory);
+    window.toolboxManager.storyCount += 1;
 }
 
 function addAdToToolbox(){
@@ -53,6 +54,7 @@ function addAdToToolbox(){
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
   newAd.className = 'ad ad-preview';
   toolbox.appendChild(newAd);
+  window.toolboxManager.adCount += 1;
 }
 
 function addNewAdToPage(pageNumber, adType){
@@ -70,6 +72,17 @@ function addNewAdToPage(pageNumber, adType){
   window.budgetManager.addAdCount(adSquareCount);
   newAd.className = 'ad ad-'+adType;
   page.appendChild(newAd);
+  window.budgetManager.pages[(pageNumber-1)].adCount += 1;
+}
+
+function shipPaper(){
+  if (window.budgetManager.pages){
+    window.budgetManager.pages.forEach(function(page){
+      if (page.wordcount < 0 && page.adCount < 0){
+        alert('You can\'t ship a paper with an empty page.');
+      }
+    });
+  }
 }
 
 function breakEven(iteration){
