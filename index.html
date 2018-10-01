@@ -27,10 +27,20 @@
           var event = new CustomEvent('budgetChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
+        function dispatchDistributionChange(dispatchObject){
+          var event = new CustomEvent('distributionChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
+        function dispatchAdValueChange(dispatchObject){
+          var event = new CustomEvent('adValueChanged', dispatchObject);
+          paper.dispatchEvent(event);
+        }
         window.budgetManager = {
           pageCount: 1,
           totalBudget: -1000,
           stories: 0,
+          distribution: 1000,
+          valueOfAdSquare: 50,
           pages: [
                   { wordcount: 0 } 
                  ],
@@ -57,9 +67,46 @@
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.pop( { wordcount: 0 } );
           },
+          
           getBudget: function(){
             return this.totalBudget;
           },
+          
+          getValueOfAd: function() { 
+            return this.valueOfAdSquare;
+          },
+          setValueOfAd: function(x) {
+            this.valueOfAdSquare = x;
+            dispatchAdValueChange({detail: this.valueOfAdSquare});
+          },
+          addValueOfAd: function(x) {
+            this.valueOfAdSquare += x;
+            dispatchAdValueChange({detail: this.valueOfAdSquare});
+          },
+          subtractValueOfAd: function(x) {
+            this.valueOfAdSquare -= x;
+            dispatchAdValueChange({detail: this.valueOfAdSquare});
+          },
+          
+          getDistribution: function() { 
+            return this.distribution;
+          },
+          setDistribution: function(x) {
+            this.distribution = x;
+            this.setValueOfAd(50*(x/1000));
+            dispatchDistributionChange({detail: this.distribution});
+          },
+          addDistribution: function(x) {
+            this.distribution += x;
+            this.setValueOfAd(50*(x/(this.distribution)));
+            dispatchDistributionChange({detail: this.distribution});
+          },
+          subtractDistribution: function(x) {
+            this.distribution -= x;
+            this.setValueOfAd(50*(x/(this.distribution)));
+            dispatchDistributionChange({detail: this.distribution});
+          },
+          
           getStories: function() { 
             return this.stories;
           },
