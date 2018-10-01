@@ -31,7 +31,9 @@
           pageCount: 1,
           totalBudget: -1000,
           stories: 0,
-          pages: { 1: { wordcount: 0 } },
+          pages: [
+                  { wordcount: 0 } 
+                 ],
           getPages: function() { 
             return this.pageCount;
           },
@@ -46,12 +48,14 @@
             this.totalBudget += x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
+            this.pages.push( { wordcount: 0 } );
           },
           subtractPages: function(x) {
             this.pageCount -= x;
             this.totalBudget -= x*-1000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
+            this.pages.pop( { wordcount: 0 } );
           },
           getBudget: function(){
             return this.totalBudget;
