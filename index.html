@@ -41,6 +41,7 @@
           stories: 0,
           distribution: 1000,
           valueOfAdSquare: 50,
+          pageDistributionFactor: 500,
           pages: [
                   { wordcount: 0 } 
                  ],
@@ -59,6 +60,10 @@
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.push( { wordcount: 0 } );
+            if (this.pageCount % 10 === 0){
+              this.pageDistributionFactor = 500 * (this.pageCount/10);
+            }
+            this.addDistribution(this.pageDistributionFactor);
           },
           subtractPages: function(x) {
             this.pageCount -= x;
@@ -93,14 +98,14 @@
           },
           addDistribution: function(x) {
             this.distribution += x;
-            this.setValueOfAd(50*(x/(this.distribution)));
+            this.addValueOfAd(50*(x/1000));
             this.totalBudget += (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
             this.distribution -= x;
-            this.setValueOfAd(50*(x/(this.distribution)));
+            this.subtractValueOfAd(50*(x/1000));
             this.totalBudget -= (x)*-1;
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
@@ -134,6 +139,10 @@
           console.log('Current Page Count: ', returnedObject.detail);
         }, false);
         
+        paper.addEventListener('storiesChanged', function(returnedObject){
+          console.log('Current Page Count: ', returnedObject.detail);
+        }, false);
+        
         window.commandSet.forEach(function(callback){ callback();  });
         window.commandSet = {
           push: function(callback){
@@ -161,7 +170,7 @@
       <h5>
         Toolbox: </h5>
       <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
-      <button class="shinyButton shinyLime" onclick="pageAdd()">Commission Story</button>
+      <button class="shinyButton shinyLime" onclick="addStoryToToolbox()">Commission Story</button>
       <button class="shinyButton shinyPurple" onclick="pageAdd()">Sell Ad</button>
     </div>
     <div id="paper">

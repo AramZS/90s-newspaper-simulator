@@ -118,3 +118,10 @@ button.shinyButton:hover{
 .story-wide {
   grid-column: auto / span 3;  
 }
+
+.story-preview {
+    width: 160px;
+    margin: 1px;
+    height: 158px;
+    float: left;
+}

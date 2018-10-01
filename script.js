@@ -36,6 +36,15 @@ function addStoryToPage(pageNumber, storyType){
   page.appendChild(newStory);
 }
 
+function addStoryToToolbox(pageNumber, storyType){
+  var toolbox = document.getElementById('toolbox'); 
+  var newStory = document.createElement('div');
+  newStory.className = 'story '+storyType;
+  window.budgetManager.addStories(1);
+  newStory.innerText += ipsumAdd(275);
+  toolbox.appendChild(newStory);
+}
+
         if (
             document.readyState === "complete" ||
             (document.readyState !== "loading" && !document.documentElement.doScroll)
