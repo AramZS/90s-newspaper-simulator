@@ -111,11 +111,23 @@ function scriptInit(){
 
         window.paper.addEventListener('budgetChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-budget');
-          budgetSpan.innerHTML = window.budgetManager.getBudget();
+          var theValue = window.budgetManager.getBudget();
+          if (theValue < 0){
+            budgetSpan.innerHTML = '<span style="color:darkred">$'+Number(theValue).toLocaleString()+'</span>';
+          }
+          if (theValue > 0){
+            budgetSpan.innerHTML = '<span style="color:darkgreen">$'+Number(theValue).toLocaleString()+'</span>';
+          }
         }, false);
         window.paper.addEventListener('distributionChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-distribution');
-          budgetSpan.innerHTML = window.budgetManager.getDistribution();
+          var theValue = window.budgetManager.getDistribution();
+          if (theValue < 0){
+            budgetSpan.innerHTML = '<span style="color:darkred">'+Number(window.budgetManager.getDistribution()).toLocaleString()+'</span>';
+          }
+          if (theValue > 0){
+            budgetSpan.innerHTML = '<span style="color:darkgreen">'+Number(window.budgetManager.getDistribution()).toLocaleString()+'</span>';
+          }
         }, false);
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
   
