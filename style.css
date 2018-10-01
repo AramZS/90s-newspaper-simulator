@@ -149,8 +149,20 @@ button.shinyButton:hover{
   background: #b5f0e3; 
 }
 
-.ad-full-width {
+.ad-full-page {
   grid-column: auto / span 3;  
+  grid-row: auto / span 3;
+  background: #a76c49; 
+}
+
+.ad-full-height {
+  grid-column: auto / span 1;  
+  grid-row: auto / span 3;
+  background: #f5dac6; 
+}
+
+.ad-three-quarter {
+  grid-column: auto / span 2;  
   grid-row: auto / span 1;
-  background: #b5f0e3; 
+  background: #e1d8da; 
 }

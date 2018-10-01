@@ -59,7 +59,14 @@ function addNewAdToPage(pageNumber, adType){
   var page = document.getElementById('page-'+pageNumber.toString()); 
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
-  window.budgetManager.addAdCount(1);
+  var adSquareCount = 1;
+  if ( 'small-square' !== adType ){
+      if ('three-quarter'){ adSquareCount = 2; }
+      if ('full-height'){ adSquareCount = 3; }
+      if ('full-width'){ adSquareCount = 3; }
+      if ('full-page'){ adSquareCount = 9; }
+  }
+  window.budgetManager.addAdCount(adSquareCount);
   newAd.className = 'ad ad-'+adType;
   page.appendChild(newAd);
 }
