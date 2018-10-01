@@ -158,7 +158,7 @@ button.shinyButton:hover{
 .ad-full-height {
   grid-column: auto / span 1;  
   grid-row: auto / span 3;
-  background: #f5dac6; 
+  background: #b5f0e3; 
 }
 
 .ad-three-quarter {
@@ -171,4 +171,16 @@ button.shinyButton:hover{
   grid-column: auto / span 1;  
   grid-row: auto / span 2;
   background: #e1d8da; 
+}
+
+.ad-preview {
+    width: 154px;
+    margin: 1px;
+  margin-top: 10px;
+    height: 152px;
+    float: left;
+  padding: 1px;
+    background: #f9f7f1;
+    font-size: 5px;
+    border: 1px #9a4ef1 solid;
 }

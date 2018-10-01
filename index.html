@@ -90,7 +90,7 @@
           },
           
           getBudget: function(){
-            return this.totalBudget+this.totalAdSales()+((this.pageCount*-3000)+(this.stories*(this.storyCost*-1)));
+            return this.totalBudget+this.totalAdSales()+((this.pageCount*(-3000-(this.pageCount*20)))+(this.stories*(this.storyCost*-1)));
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -132,16 +132,16 @@
           addWordcount: function(x) {
             this.wordcount += x;
             if ((this.wordcount % 1375) == 0){
-              this.storyCost += 150;
+              this.storyCost += 200;
               this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 2750) == 0){
-              this.storyCost += 550;
+              this.storyCost += 600;
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 13750) == 0){
-              this.storyCost += 850;
+              this.storyCost += 1000;
               this.addDistribution(this.storyDistributionFactor*2);
             }
           },

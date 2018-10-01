@@ -78,10 +78,20 @@ function addNewAdToPage(pageNumber, adType){
 function shipPaper(){
   if (window.budgetManager.pages){
     window.budgetManager.pages.forEach(function(page){
-      if (page.wordcount < 0 && page.adCount < 0){
+      if (page.wordcount <= 0 && page.adCount <= 0){
         alert('You can\'t ship a paper with an empty page.');
+        return false;
       }
     });
+    if (window.toolboxManager.adCount > 0){
+      alert('You have to place all sold ads.');
+      return false;
+    }
+    alert('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
+    return true;
+  } else {
+    alert('No pages');
+    return false;
   }
 }
 
