@@ -50,6 +50,7 @@
           storyCost: 450,
           wordcount: 0,
           adCount: 0,
+          distributionFactor: 1,
           pages: [
                   { wordcount: 0 } 
                  ],
@@ -58,24 +59,27 @@
           },
           setPages: function(x) {
             this.pageCount = x;
-            this.totalBudget = x*-1500;
+            this.totalBudget = x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           addPages: function(x) {
             this.pageCount += x;
-            this.totalBudget += x*-1500;
+            this.totalBudget += x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.push( { wordcount: 0 } );
             if (this.pageCount % 3 === 0){
-              this.pageDistributionFactor = 1500 * (this.pageCount/3);
+              this.pageDistributionFactor = 2000 * (this.pageCount/3);
+            }
+            if (this.pageCount % 10 === 0){
+              this.distributionFactor += 1;
             }
             this.addDistribution(this.pageDistributionFactor);
           },
           subtractPages: function(x) {
             this.pageCount -= x;
-            this.totalBudget -= x*-1500;
+            this.totalBudget -= x*-2000;
             dispatchPageValueChange({detail: this.pageCount});
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.pop( { wordcount: 0 } );
@@ -124,13 +128,16 @@
           addWordcount: function(x) {
             this.wordcount += x;
             if ((this.wordcount % 1375) == 0){
+              this.storyCost += 150;
               this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 2750) == 0){
+              this.storyCost += 250;
               this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 13750) == 0){
+              this.storyCost += 450;
               this.addDistribution(this.storyDistributionFactor*2);
             }
           },
@@ -158,19 +165,19 @@
           },
           setStories: function(x) {
             this.stories = x;
-            this.totalBudget += x*-450;
+            this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           addStories: function(x) {
             this.stories += x;
-            this.totalBudget += x*-450;
+            this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractStories: function(x) {
             this.pageCount -= x;
-            this.totalBudget -= x*-450;
+            this.totalBudget -= x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
           },
