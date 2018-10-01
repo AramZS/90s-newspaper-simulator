@@ -181,10 +181,11 @@ button.shinyButton:hover{
       width: 154px;
 }
 
-.page_grid > .story {
+.page-grid > .ad {
     font-size: 20px;
     text-align: center;
     padding: 20px;
+  color: transparent;
 }
 
 #toolbox_grid {

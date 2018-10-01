@@ -163,6 +163,7 @@ function scriptInit(){
   window.draggableObjects.dragablePages = [];
   
   const containers = document.querySelectorAll('.draggableContainer');
+  
         window.draggableObjects.mainObject = new window.Draggable.Draggable(containers, {
           draggable: '.isDraggable', 
           mirror: {
@@ -171,6 +172,9 @@ function scriptInit(){
           },
           plugins: [window.Draggable.Plugins.Snappable]
         });
+  
+  window.dragableObjects.currentlyOver = '';
+  window.dragableObject.previouslyOver = '';
   
         var page1 = document.getElementById('page-1');
         window.draggableObjects.mainObject.on('drag:over', function(e){
@@ -182,6 +186,14 @@ function scriptInit(){
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
             e.data.overContainer.appendChild(e.data.source);
+          }
+        });
+  
+        window.draggableObjects.mainObject.on('drag:stop', function(e){
+          console.log('Drag stop Container', e);
+          if (e.data.originalSource != e.data.overContainer){
+            console.log('container move attempt');
+            // e.data.overContainer.appendChild(e.data.source);
           }
         });
 }
