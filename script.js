@@ -53,6 +53,7 @@ function addAdToToolbox(){
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
   newAd.className = 'ad ad-preview';
+  newAd.innerText = 'Ad';
   toolbox.appendChild(newAd);
   window.toolboxManager.adCount += 1;
 }
