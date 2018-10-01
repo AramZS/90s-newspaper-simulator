@@ -125,11 +125,14 @@ button.shinyButton:hover{
   grid-column: auto / span 3;  
 }
 
-.story-preview {
+.old-story-preview {
     width: 154px;
+    height: 152px;  
+}
+
+.story-preview {
     margin: 1px;
-  margin-top: 10px;
-    height: 152px;
+  margin-top: 10px;\
     float: left;
   padding: 1px;
     background: #f9f7f1;
@@ -182,8 +185,9 @@ button.shinyButton:hover{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 2px;
-    grid-auto-rows: minmax(80px, auto);
+    grid-auto-rows: 80px;
     grid-auto-flow: dense;
+    grid-auto-columns: 80px;
 }
 
 .ad-preview {

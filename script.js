@@ -41,7 +41,7 @@ function addStoryToToolbox(){
   var toolbox = document.getElementById('toolbox_grid'); 
   var newStory = document.createElement('div');
   newStory.id = 'story-'+window.budgetManager.getStories();
-  newStory.className = 'story story-preview';
+  newStory.className = 'story story-preview story-default isDraggable';
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275);
   toolbox.appendChild(newStory);
@@ -52,7 +52,7 @@ function addAdToToolbox(){
   var toolbox = document.getElementById('toolbox_grid'); 
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
-  newAd.className = 'ad ad-preview ad-small-square';
+  newAd.className = 'ad ad-preview ad-small-square isDraggable';
   newAd.innerText = 'Ad';
   toolbox.appendChild(newAd);
   window.toolboxManager.adCount += 1;
@@ -143,6 +143,7 @@ function scriptInit(){
             budgetSpan.innerHTML = '<span style="color:darkgreen">$'+Number(theValue).toLocaleString()+'</span>';
           }
         }, false);
+  
         window.paper.addEventListener('distributionChanged', function(returnedObject){
           var budgetSpan = document.getElementById('total-distribution');
           var theValue = window.budgetManager.getDistribution();
@@ -153,8 +154,24 @@ function scriptInit(){
             budgetSpan.innerHTML = '<span style="color:darkgreen">'+Number(window.budgetManager.getDistribution()).toLocaleString()+'</span>';
           }
         }, false);
+  
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
-        window.draggableObj = new window.Draggable.Draggable(document.getElementById('page-1'), {
+  
+        var window.draggableOdraggableObj = new window.Draggable.Draggable(document.getElementById('page-1'), {
+          draggable: '.isDraggable', 
+          mirror: {
+            appendTo: 'page-1',
+            constrainDimensions: true
+          },
+          plugins: [window.Draggable.Plugins.Snappable]
+        });
+  
+        var page1 = document.getElementById('page-1');
+        page1.addEventListener('drag:over', function(e){
+          console.log(e);
+        });
+  
+        window.draggableObj = new window.Draggable.Draggable(document.getElementById('toolbox_grid'), {
           draggable: '.isDraggable', 
           mirror: {
             appendTo: 'page-1',
