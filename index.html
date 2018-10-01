@@ -42,6 +42,7 @@
           distribution: 1000,
           valueOfAdSquare: 50,
           pageDistributionFactor: 500,
+          storyDistributionFactor: 750,
           wordcount: 0,
           pages: [
                   { wordcount: 0 } 
@@ -98,9 +99,11 @@
             return this.wordcount;
           },
           addWordcount: function(x) {
-            var oldWordcount = this.wordcount;
             this.wordcount += x;
-            if (this.wordcount / 
+            if ((this.wordcount % 1375) == 0){
+              this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
+              this.addDistribution(this.storyDistributionFactor);
+            }
           },
           
           getDistribution: function() { 
