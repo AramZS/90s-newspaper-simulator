@@ -157,34 +157,42 @@ function scriptInit(){
   
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
         window.draggableObjects = {};
+  window.draggableObjects.mainObject = {};
   window.draggableObjects.dragablePages = [];
+  
   const containers = document.querySelectorAll('.draggableContainer');
-        window.draggableObjects.dragablePages.push( new window.Draggable.Draggable(document.getElementById('page-1'), {
+        window.draggableObjects.mainObject = new window.Draggable.Draggable(containers, {
           draggable: '.isDraggable', 
           mirror: {
             appendTo: 'page-1',
             constrainDimensions: true
           },
           plugins: [window.Draggable.Plugins.Snappable]
-        }));
+        });
   
         var page1 = document.getElementById('page-1');
-        window.draggableObjects.dragablePages[0].on('drag:over', function(e){
+        window.draggableObjects.mainObject.on('drag:over', function(e){
           console.log(e);
         });
   
-        window.draggableToolboxObj = function(document.getElementById('toolbox_grid'), {
+        window.draggableObjects.mainObject.on('drag:over:container', function(e){
+          console.log('toolboxDrag Over Container', e);
+        });
+}
+
+function scrap(){
+
+
+        window.draggableToolboxObj =  new window.Draggable.Draggable(document.getElementById('toolbox_grid'), {
           draggable: '.isDraggable', 
           mirror: {
             appendTo: 'page-1',
             constrainDimensions: true
           },
           plugins: [window.Draggable.Plugins.Snappable]
-        }){};
+        });
         window.draggableToolboxObj.on('drag:over', function(e){
           console.log('toolboxDrag Over', e);
-        });
-        window.draggableToolboxObj.on('drag:over:container', function(e){
-          console.log('toolboxDrag Over Container', e);
+          if (e.data.originalSource 
         });
 }
