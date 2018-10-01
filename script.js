@@ -154,6 +154,12 @@ function scriptInit(){
           }
         }, false);
         window.commandSet.push(function(){ addNewStoryToPage(1, 'story-default'); });
-        window.draggableObj = new Draggable(document.getElementById('page-1'));
+        window.draggableObj = new window.Draggable.Draggable(document.getElementById('page-1'), {
+          draggable: '.isDraggable', 
+          mirror: {
+            appendTo: 'page-1',
+            constrainDimensions: true
+          }
+        });
   
 }
