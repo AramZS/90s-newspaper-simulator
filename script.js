@@ -173,8 +173,9 @@ function scriptInit(){
           plugins: [window.Draggable.Plugins.Snappable]
         });
   
-  window.dragableObjects.currentlyOver = '';
-  window.dragableObject.previouslyOver = '';
+  window.draggableObjects.currentlyOver = '';
+  window.draggableObjects.previouslyOver = '';
+  window.draggableObjects.sample = '';
   
         var page1 = document.getElementById('page-1');
         window.draggableObjects.mainObject.on('drag:over', function(e){
@@ -183,14 +184,18 @@ function scriptInit(){
   
         window.draggableObjects.mainObject.on('drag:over:container', function(e){
           console.log('toolboxDrag Over Container', e);
+          window.draggableObjects.previouslyOver = e.data.originalSource;
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
-            e.data.overContainer.appendChild(e.data.source);
+            //window.draggableObjects.sample = e.data.source.cloneNode(false);
+            e.data.overContainer.appendChild(window.draggableObjects.sample);
+            window.draggableObjects.previouslyOver = e.data.overContainer;
           }
         });
   
         window.draggableObjects.mainObject.on('drag:stop', function(e){
           console.log('Drag stop Container', e);
+          window.draggableObjects.sample.remove();
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
             // e.data.overContainer.appendChild(e.data.source);
