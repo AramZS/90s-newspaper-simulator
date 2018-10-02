@@ -120,6 +120,14 @@ function addNewAdToPage(pageNumber, adType){
   window.budgetManager.pages[(pageNumber-1)].adCount += 1;
 }
 
+function determineViability(pageGrid, gridWidth, gridHeight){
+  pageGrid = [[1,1,1],[1,1,1],[1,1,1]];
+}
+
+function rotateStorySize(){
+
+}
+
 function shipPaper(){
   console.log('Trying to ship');
   var statusCheckIn = document.getElementById('ship-status');
