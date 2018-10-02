@@ -79,7 +79,9 @@
             if (this.pageCount % 10 === 0){
               this.distributionFactor += 2;
             }
-            this.addDistribution(this.pageDistributionFactor);
+            if (this.pageCount % 3 === 0){
+              this.addDistribution(this.pageDistributionFactor);
+            }
           },
           subtractPages: function(x) {
             this.pageCount -= x;
@@ -93,7 +95,7 @@
           },
           
           getBudget: function(){
-            var distributionCosts = Math.round((Math.round(this.getDistribution()/1000)*10)*(this.pageCount/10));
+            var distributionCosts = Math.round((Math.round(this.getDistribution()/1000)*10)*(this.pageCount/5));
             dispatchDistributionChange({detail: this.getDistribution()});
             return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
           },
