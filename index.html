@@ -186,14 +186,14 @@
           addDistribution: function(x) {
             this.distribution += x;
             this.setValueOfAd();
-            this.totalBudget += (x)*(this.distributionFactor*-1);
+            //this.totalBudget += (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
             this.distribution -= x;
             this.setValueOfAd();
-            this.totalBudget -= (x)*(this.distributionFactor*-1);
+            //this.totalBudget -= (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
