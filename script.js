@@ -279,7 +279,7 @@ function trackPageDrags(){
         });
   
         window.draggableObjects.mainObject.on('drag:stop', function(e){
-          console.log('Drag stop Container', e);
+          console.log('test', e);
           //window.draggableObjects.sample.remove();
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
