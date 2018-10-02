@@ -1,3 +1,11 @@
+90s Newspaper Buisness Simulator
+==================================
+
+This is a 90s Newspaper Business Simulator. It is intended to demonstrate ad placement and story considerations as well as the freewheeling-hockystick sales of the early 90s and 80s newspapers. The project lives at https://newspaper-business-simulator.glitch.me 
+
+It is intended to have voiced instructions. Also, you need to turn your ad blocker off because it pattern matches on the ad divs this uses and considers them to be web ads. 
+
+
 Welcome to Glitch
 =================
 
