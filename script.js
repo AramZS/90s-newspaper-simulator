@@ -55,7 +55,33 @@ function addAdToToolbox(){
   var toolbox = document.getElementById('toolbox_grid'); 
   var newAd = document.createElement('div');
   newAd.id = 'ad-'+window.budgetManager.getAdCount();
-  newAd.className = 'ad ad-preview ad-small-square isDraggable';
+  var rollDie = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
+  var classNameForAd = 'small-square';
+  var adValue = 1;
+  switch (rollDie) {
+    case 1:
+      classNameForAd = 'small-square';
+      
+      break;
+    case 2:
+      classNameForAd = 'three-quarter';
+      break;
+    case 3:
+      classNameForAd = 'three-quarter-column';
+      break;      
+    case 4:
+      classNameForAd = 'full-height';
+      break;     
+    case 5:
+      classNameForAd = 'full-width';
+      break;    
+    case 5:
+      classNameForAd = 'full-height';
+      break;        
+    default:
+      break;
+  }
+  newAd.className = 'ad ad-preview isDraggable '+classNameForAd;
   newAd.innerText = 'Ad';
   toolbox.appendChild(newAd);
   window.toolboxManager.adCount += 1;
@@ -93,6 +119,7 @@ function shipPaper(){
     }
     if (window.budgetManager.getBudget() <= 0){
       alert('You didn\'t even break even! Your bankrupt');
+      return false;
     }
     alert('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
     return true;
