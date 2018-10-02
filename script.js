@@ -58,32 +58,47 @@ function addAdToToolbox(){
   var rollDie = Math.floor(Math.random() * ((6 - 1) + 1) + 1);
   var classNameForAd = 'small-square';
   var adValue = 1;
+  var adName = '1x1';
   switch (rollDie) {
     case 1:
       classNameForAd = 'small-square';
-      
+      adName = '1x1';
+      adValue = 1;
       break;
     case 2:
       classNameForAd = 'three-quarter';
+      adName = '1x1';
+      adName = '2x1';
+      adValue = 2;
       break;
     case 3:
       classNameForAd = 'three-quarter-column';
+      adValue = 2;
+      adName = '1x2';
       break;      
     case 4:
       classNameForAd = 'full-height';
+      adValue = 3;
+      adName = '1x3';
       break;     
     case 5:
       classNameForAd = 'full-width';
+      adValue = 3;
+      adName = '3x1';
       break;    
     case 5:
       classNameForAd = 'full-height';
+      adValue = 9;
+      adName = '3x3';
       break;        
     default:
       break;
   }
-  newAd.className = 'ad ad-preview isDraggable '+classNameForAd;
-  newAd.innerText = 'Ad';
+  newAd.className = 'ad ad-preview isDraggable ad-'+classNameForAd;
+  newAd.setAttribute('data-ad-value', adValue);
+  newAd.innerHTML = 'Ad: <span class="ad-name">'+adName+'</span>';
   toolbox.appendChild(newAd);
+  window.budgetManager.addAdCount(adValue);
   window.toolboxManager.adCount += 1;
 }
 
