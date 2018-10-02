@@ -88,8 +88,8 @@ function addAdToToolbox(){
       break;    
     case 5:
       classNameForAd = 'full-height';
-      adValue = 9;
-      adName = '3x3';
+      adValue = 6;
+      adName = '3x2';
       break;        
     default:
       break;
@@ -112,7 +112,7 @@ function addNewAdToPage(pageNumber, adType){
       if ('three-quarter-column'){ adSquareCount = 2; }
       if ('full-height'){ adSquareCount = 3; }
       if ('full-width'){ adSquareCount = 3; }
-      if ('full-page'){ adSquareCount = 9; }
+      if ('full-page'){ adSquareCount = 6; }
   }
   window.budgetManager.addAdCount(adSquareCount);
   newAd.className = 'ad ad-'+adType;
@@ -124,22 +124,22 @@ function shipPaper(){
   if (window.budgetManager.pages){
     window.budgetManager.pages.forEach(function(page){
       if (page.wordcount <= 0 && page.adCount <= 0){
-        alert('You can\'t ship a paper with an empty page.');
+        document.getElementById('ship-status').innerHTML('You can\'t ship a paper with an empty page.');
         return false;
       }
     });
     if (window.toolboxManager.adCount > 0){
-      alert('You have to place all sold ads.');
+      document.getElementById('ship-status').innerHTML('You have to place all sold ads.');
       return false;
     }
     if (window.budgetManager.getBudget() <= 0){
-      alert('You didn\'t even break even! Your bankrupt');
+      document.getElementById('ship-status').innerHTML('You didn\'t even break even! Your bankrupt');
       return false;
     }
-    alert('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
+    document.getElementById('ship-status').innerHTML('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
     return true;
   } else {
-    alert('No pages');
+    document.getElementById('ship-status').innerHTML('No pages');
     return false;
   }
 }

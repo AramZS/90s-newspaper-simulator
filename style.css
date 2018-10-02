@@ -164,7 +164,7 @@ button.shinyButton:hover{
 
 .ad-full-page {
   grid-column: auto / span 3;  
-  grid-row: auto / span 3;
+  grid-row: auto / span 2;
   background: #a76c49; 
 }
 
