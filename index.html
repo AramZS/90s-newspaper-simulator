@@ -104,7 +104,7 @@
             return this.valueOfAdSquare;
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = (20*((this.getDistribution()/1000)))+(this.storyCost/2);
+            this.valueOfAdSquare = (20*((this.getDistribution()/1000)))+(this.storyCost);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
             dispatchBudgetChange({detail: this.totalBudget});
           },
@@ -141,36 +141,40 @@
             var wordcount = stories*275;
              if ((wordcount > 1375)){
               this.storyCost = 650;
-              this.storyDistributionFactor = this.storyDistributionFactor * (wordcount/1375);
+              distributionBonus = this.storyDistributionFactor * (wordcount/1375);
               //this.addDistribution(this.storyDistributionFactor);
-              distributionBonus = this.storyDistributionFactor;
+              // distributionBonus = parseInt(JSON.stringify(this.storyDistributionFactor));
             }
             if ((wordcount > 6750)){
               this.storyCost = 1200;
-              distributionBonus += this.storyDistributionFactor;
+              distributionBonus = (this.storyDistributionFactor +5) * (wordcount/1375);
+              distributionBonus += distributionBonus;
               //this.addDistribution(this.storyDistributionFactor);
             }
             if ((wordcount > 13750)){
               this.storyCost = 1850;
-              distributionBonus += this.storyDistributionFactor;
+              distributionBonus = (this.storyDistributionFactor+10) * (wordcount/1375);
+              distributionBonus += distributionBonus;
+              distributionBonus += distributionBonus;
               //this.addDistribution(this.storyDistributionFactor*2);
             }
+            console.log('Story Distribution Bonus', distributionBonus);
             return distributionBonus;
           },
           addWordcount: function(x) {
             this.wordcount += x;
             if ((this.wordcount % 1375) == 0){
-              this.storyCost += 200;
-              this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
-              this.addDistribution(this.storyDistributionFactor);
+              //this.storyCost += 200;
+              //this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
+              //this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 2750) == 0){
-              this.storyCost += 600;
-              this.addDistribution(this.storyDistributionFactor);
+              //this.storyCost += 600;
+              //this.addDistribution(this.storyDistributionFactor);
             }
             if ((this.wordcount % 13750) == 0){
-              this.storyCost += 1000;
-              this.addDistribution(this.storyDistributionFactor*2);
+              //this.storyCost += 1000;
+              //this.addDistribution(this.storyDistributionFactor*2);
             }
           },
           
