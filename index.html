@@ -184,27 +184,30 @@
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores);
-            if (Math.ceil(printedStores)/this.pageCount < .6){
+            if (Math.ceil(printedStores)/this.pageCount < .2){
+                goodStoryValue = -10000*this.pageCount;
+            } else if (Math.ceil(printedStores)/this.pageCount < .6){
                 goodStoryValue = -2000*this.pageCount;
-            } else if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < 1){
+            } else if (Math.ceil(printedStores)/this.pageCount < 1){
                 goodStoryValue = (goodStoryValue/2)*10;
             } else if (Math.ceil(printedStores)/this.pageCount > 2) {
                 goodStoryValue += goodStoryValue/4;
                 goodStoryValue = goodStoryValue*10;
             }
+            console.log('Good Story Distribution Bonus ',goodStoryValue, Math.ceil(printedStores)/this.pageCount);
             var newDist = Math.floor((this.distribution) + (goodStoryValue) + this.distributionFactor);
             // dispatchDistributionChange({data: newDist});
             return newDist;
           },
           addDistribution: function(x) {
-            this.distribution += x;
+            // this.distribution += x;
             this.setValueOfAd();
             //this.totalBudget += (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
             dispatchBudgetChange({detail: this.totalBudget});
           },
           subtractDistribution: function(x) {
-            this.distribution -= x;
+            // this.distribution -= x;
             this.setValueOfAd();
             //this.totalBudget -= (x)*(this.distributionFactor*-1);
             dispatchDistributionChange({detail: this.distribution});
