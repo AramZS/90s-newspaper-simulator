@@ -88,10 +88,13 @@
             dispatchBudgetChange({detail: this.totalBudget});
             this.pages.pop( { wordcount: 0 } );
           },
+          getPageCost: function(x) {
+            return (this.pageCount*(3000+(this.pageCount*10)));
+          },
           
           getBudget: function(){
             var distributionCosts = Math.round(this.getDistribution()/1000)*10;
-            return this.totalBudget+this.totalAdSales()-((this.pageCount*(4000+(this.pageCount*2))))-(this.stories*(this.storyCost))-(distributionCosts);
+            return this.totalBudget+this.totalAdSales()-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -174,7 +177,7 @@
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores);
-            return this.distribution;// + goodStoryValue;
+            return this.distribution + goodStoryValue;
           },
           addDistribution: function(x) {
             this.distribution += x;
@@ -251,9 +254,9 @@
         Toolbox: </h5>
       <div id="toolbox__buttons">
         
-        <button class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
-        <button class="shinyButton shinyLime" onclick="addStoryToToolbox()">Commission Story</button>
-        <button class="shinyButton shinyPurple" onclick="addAdToToolbox()">Sell Ad</button>
+        <button id="add-page" class="shinyButton shinyBlue" onclick="pageAdd()">Add Page</button>
+        <button id="comission-story" class="shinyButton shinyLime" onclick="addStoryToToolbox()">Commission Story</button>
+        <button id="sell-ad" class="shinyButton shinyPurple" onclick="addAdToToolbox()">Sell Ad</button>
       </div>
       <div id="toolbox_grid" class="draggableContainer">
         
