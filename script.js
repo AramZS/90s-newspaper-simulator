@@ -172,24 +172,31 @@ function shipPaper(){
     var complete = false;
     console.log('Check pages');
     window.budgetManager.pages.forEach(function(page, index){
-      if (page.wordcount <= 0 && page.adCount <= 0){
-        statusCheckIn.innerText = 'You can\'t ship a paper with an empty page.';
-        complete = true;
+      if (complete){
         return false;
       }
+      console.log('page check', page, index);
       var squareValue = 0;
       var containers = document.querySelectorAll('#page-'+(index+1).toString()+' div');
+      console.log('Check squares for page '+(index+1), containers);
       containers.forEach(function(pageInnerEl){
         if (pageInnerEl.hasAttribute('data-square-value')){
           squareValue += parseInt(pageInnerEl.getAttribute('data-square-value'));
         }
       });
+      console.log('Squares for page '+(index+1), squareValue);
+      if (squareValue == 0){
+        statusCheckIn.innerText = 'You can\'t ship a paper with an empty page.';
+        complete = true;
+        return false;
+      }
       if (squareValue < 8){
         statusCheckIn.innerText = 'You can\'t ship a paper with more than one blank square per page.';
         complete = true;
         return false;
         console.log('#page-'+(index+1).toString()+' is incomplete', squareValue);
       }
+
     });
     if (complete){
       return false;

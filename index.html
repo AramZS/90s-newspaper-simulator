@@ -89,12 +89,12 @@
             this.pages.pop( { wordcount: 0 } );
           },
           getPageCost: function(x) {
-            return (this.pageCount*(3000+(this.pageCount*10)));
+            return (this.pageCount*(3000));
           },
           
           getBudget: function(){
             var distributionCosts = Math.round(this.getDistribution()/1000)*10;
-            return this.totalBudget+this.totalAdSales()-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
+            return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -104,7 +104,7 @@
             return this.valueOfAdSquare;
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = (25*((this.getDistribution()/1000)))+(this.storyCost/2);
+            this.valueOfAdSquare = (20*((this.getDistribution()/1000)))+(this.storyCost/2);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
             dispatchBudgetChange({detail: this.totalBudget});
           },
