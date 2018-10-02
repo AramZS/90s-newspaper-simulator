@@ -94,6 +94,7 @@
           
           getBudget: function(){
             var distributionCosts = Math.round(this.getDistribution()/1000)*10;
+            dispatchDistributionChange({detail: this.getDistribution()});
             return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
           },
           totalAdSales: function(){
@@ -181,7 +182,7 @@
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores)/10;
-            return this.distribution + goodStoryValue;
+            return Math.floor(this.distribution + goodStoryValue);
           },
           addDistribution: function(x) {
             this.distribution += x;
@@ -206,18 +207,21 @@
             // this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
+            dispatchDistributionChange({detail: this.getDistribution()});
           },
           addStories: function(x) {
             this.stories += x;
             // this.totalBudget += x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
+            dispatchDistributionChange({detail: this.getDistribution()});
           },
           subtractStories: function(x) {
             this.pageCount -= x;
             // this.totalBudget -= x*-this.storyCost;
             dispatchStoryChange({detail: this.stories});
             dispatchBudgetChange({detail: this.totalBudget});
+            dispatchDistributionChange({detail: this.getDistribution()});
           },
         };
         console.log('Current Page Count: ', budgetManager.pageCount);
