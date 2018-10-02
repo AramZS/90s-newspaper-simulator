@@ -133,18 +133,18 @@
           onFlyWordCount: function(stories){
             var distributionBonus = 0;
             var wordcount = stories*275;
-             if ((wordcount % 1375) == 0){
+             if ((wordcount > 1375)){
               this.storyCost = 650;
-              this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
+              this.storyDistributionFactor = this.storyDistributionFactor * (wordcount/1375);
               //this.addDistribution(this.storyDistributionFactor);
               distributionBonus = this.storyDistributionFactor;
             }
-            if ((wordcount % 2750) == 0){
+            if ((wordcount > 6750)){
               this.storyCost = 1200;
               distributionBonus += this.storyDistributionFactor;
               //this.addDistribution(this.storyDistributionFactor);
             }
-            if ((wordcount % 13750) == 0){
+            if ((wordcount > 13750)){
               this.storyCost = 1850;
               distributionBonus += this.storyDistributionFactor;
               //this.addDistribution(this.storyDistributionFactor*2);
