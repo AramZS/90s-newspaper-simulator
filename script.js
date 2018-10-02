@@ -123,6 +123,7 @@ function addNewAdToPage(pageNumber, adType){
 function shipPaper(){
   console.log('Trying to ship');
   var statusCheckIn = document.getElementById('ship-status');
+  window.toolboxManager.adCount = document.querySelectorAll('#toolbox .ad').length;
   if (window.budgetManager.pages){
     console.log('Check pages');
     window.budgetManager.pages.forEach(function(page){
@@ -242,7 +243,7 @@ function trackPageDrags(){
             console.log('container move attempt');
             //window.draggableObjects.sample = e.data.source.cloneNode(false);
             e.data.overContainer.appendChild(e.data.source);
-            window.draggableObjects.previouslyOver = e.data.overContainer;
+            window.draggableObjects.previouslyOver = e.data.overContainer; 
           }
         });
   
