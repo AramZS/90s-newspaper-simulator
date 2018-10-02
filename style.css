@@ -32,6 +32,8 @@ h1 {
   border-width: 2px 2px 0 0px;
   border-color: black #f2e3e3 black black;
   border-style: solid;
+      overflow-y: scroll;
+position:fixed;
 }
 
 .newspaper__page {
