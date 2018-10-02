@@ -89,11 +89,11 @@
             this.pages.pop( { wordcount: 0 } );
           },
           getPageCost: function(x) {
-            return (this.pageCount*(3000));
+            return (this.pageCount*(5000));
           },
           
           getBudget: function(){
-            var distributionCosts = Math.round(this.getDistribution()/1000)*10;
+            var distributionCosts = Math.round((Math.round(this.getDistribution()/1000)*10)*(this.pageCount/10));
             dispatchDistributionChange({detail: this.getDistribution()});
             return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
           },
@@ -146,7 +146,7 @@
               //this.addDistribution(this.storyDistributionFactor);
               // distributionBonus = parseInt(JSON.stringify(this.storyDistributionFactor));
             }
-            if ((wordcount > 6750)){
+            if ((wordcount > 2750)){
               this.storyCost = 1200;
               distributionBonus = (this.storyDistributionFactor +5) * (wordcount/1375);
               distributionBonus += distributionBonus;
@@ -182,7 +182,9 @@
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores);
-            if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < 1){
+            if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < .5){
+                goodStoryValue = -2000*this.pageCount;
+            } else if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < 1){
                 goodStoryValue = goodStoryValue/2;
             } else if (Math.ceil(printedStores)/this.pageCount > 2) {
                 goodStoryValue += goodStoryValue/4;
