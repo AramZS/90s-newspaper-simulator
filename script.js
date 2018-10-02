@@ -273,18 +273,41 @@ function trackPageDrags(){
           if (e.data.originalSource != e.data.overContainer){
             console.log('container move attempt');
             //window.draggableObjects.sample = e.data.source.cloneNode(false);
-            e.data.overContainer.appendChild(e.data.source);
+            
             window.draggableObjects.previouslyOver = e.data.overContainer; 
+            if ('toolbox_grid' !== e.data.source.parentElement.id){
+              var rowCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-rows']).split(' ').length;
+              var colCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-columns']).split(' ').length;
+              console.log('rows', rowCount, 'cols', colCount);
+              if ((rowCount > 3) || (colCount > 3)){
+                console.log('move attempt rejected');
+                var oldClassname = e.data.overContainer.className;
+                e.data.overContainer.className += ' invalid';
+                var timeoutCallback = function() {
+                  e.data.overContainer.className = oldClassname;
+                };
+                setTimeout(timeoutCallback, 8000);
+              } else {
+                console.log('append child', e.data.overContainer, e.data.source);
+                e.data.overContainer.appendChild(e.data.source);
+              }
+            }
           }
         });
   
         window.draggableObjects.mainObject.on('drag:stop', function(e){
           console.log('test', e, e.source, e.data.source);
           //window.draggableObjects.sample.remove();
-            console.log('container move attempt', e.data.overContainer);
+            console.log('container move attempt', e.data.source.parentElement.id);
+          if ('toolbox_grid' !== e.data.source.parentElement.id){
             var rowCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-rows']).split(' ').length;
             var colCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-columns']).split(' ').length;
             console.log('rows', rowCount, 'cols', colCount);
+            if ((rowCount > 3) || (colCount > 3)){
+              console.log('move attempt rejected');
+              document.getElementById('toolbox_grid').appendChild(e.data.source);
+            }
+          }
         });
 }
 
