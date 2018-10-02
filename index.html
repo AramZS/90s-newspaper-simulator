@@ -54,6 +54,7 @@
           storyCost: 450,
           wordcount: 0,
           adCount: 0,
+          executives: 1,
           distributionFactor: 1,
           pages: [
                   { wordcount: 0, adCount: 0 } 
@@ -97,7 +98,10 @@
           getBudget: function(){
             var distributionCosts = Math.round((Math.round(this.getDistribution()/1000)*10)*(this.pageCount/5));
             dispatchDistributionChange({detail: this.getDistribution()});
-            return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts);
+            if (this.pageCount > 10){
+              this.executives = 1 + (Math.floor(this.pageCount/10))
+            }
+            return (this.totalBudget+this.totalAdSales())-(this.getPageCost())-(this.stories*(this.storyCost))-(distributionCosts)-(this.executives*2000);
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
