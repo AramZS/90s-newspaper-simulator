@@ -178,6 +178,10 @@ function scriptInit(){
   window.draggableObjects.sample = '';
   
         var page1 = document.getElementById('page-1');
+        trackPageDrags();
+}
+
+function trackPageDrags(){
         window.draggableObjects.mainObject.on('drag:over', function(e){
           console.log(e);
         });
@@ -201,6 +205,16 @@ function scriptInit(){
             // e.data.overContainer.appendChild(e.data.source);
           }
         });
+}
+
+function makePagesDraggable(){
+  window.draggableObjects.mainObject.destroy();
+  const containers = document.querySelectorAll('.draggableContainer');
+        window.draggableObjects.mainObject = new window.Draggable.Draggable(containers, {
+          draggable: '.isDraggable',
+          plugins: [window.Draggable.Plugins.Snappable]
+        });
+  trackPageDrags();
 }
 
 function scrap(){
