@@ -50,7 +50,7 @@
           distribution: 1000,
           valueOfAdSquare: 50,
           pageDistributionFactor: 1500,
-          storyDistributionFactor: 20,
+          storyDistributionFactor: 40,
           storyCost: 450,
           wordcount: 0,
           adCount: 0,
@@ -77,7 +77,7 @@
               this.pageDistributionFactor = 2000 * (this.pageCount/3);
             }
             if (this.pageCount % 10 === 0){
-              this.distributionFactor += 5;
+              this.distributionFactor += 2;
             }
             this.addDistribution(this.pageDistributionFactor);
           },
@@ -102,10 +102,10 @@
           },
           
           getValueOfAd: function() { 
-            return this.valueOfAdSquare;
+            return (10*((this.getDistribution()/1000)))+(this.storyCost);
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = (20*((this.getDistribution()/1000)))+(this.storyCost);
+            this.valueOfAdSquare = (10*((this.getDistribution()/1000)))+(this.storyCost);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
             dispatchBudgetChange({detail: this.totalBudget});
           },
@@ -181,8 +181,13 @@
           
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
-            var goodStoryValue = this.onFlyWordCount(printedStores)/10;
-            return Math.floor(this.distribution + goodStoryValue);
+            var goodStoryValue = this.onFlyWordCount(printedStores);
+            if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < 1){
+                goodStoryValue = goodStoryValue/2;
+            } else if (Math.ceil(printedStores)/this.pageCount > 2) {
+                goodStoryValue += goodStoryValue/4;
+            }
+            return Math.floor((this.distribution) + goodStoryValue*10);
           },
           addDistribution: function(x) {
             this.distribution += x;

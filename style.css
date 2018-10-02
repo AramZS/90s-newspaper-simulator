@@ -16,7 +16,7 @@ h1 {
   width: 78%;
   height: 100%;
   margin-left: 20%;
-  overflow: visible;
+  overflow: auto;
 }
 
 #toolbox {
