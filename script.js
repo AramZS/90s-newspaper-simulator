@@ -205,6 +205,13 @@ function breakEven(iteration){
   addNewAdToPage(iterationFactor+3, 'small-square');
 }
 
+function articleTransformer(){
+  var toolgrid = document.getElementById('toolbox_grid');
+  toolgrid.addEventListener("mouseup", function(e){
+    if (e.pat){}
+  });
+}
+
         if (
             document.readyState === "complete" ||
             (document.readyState !== "loading" && !document.documentElement.doScroll)
@@ -260,6 +267,7 @@ function scriptInit(){
   
         var page1 = document.getElementById('page-1');
         trackPageDrags();
+        articleTransformer();
 }
 
 function trackPageDrags(){
