@@ -119,6 +119,8 @@ function addNewAdToPage(pageNumber, adType){
   }
   window.budgetManager.addAdCount(adSquareCount);
   newAd.className = 'ad ad-'+adType;
+  newAd.setAttribute('data-ad-value', adSquareCount);
+  newAd.setAttribute('data-square-value', adSquareCount);
   page.appendChild(newAd);
   window.budgetManager.pages[(pageNumber-1)].adCount += 1;
 }
@@ -167,14 +169,32 @@ function shipPaper(){
   var statusCheckIn = document.getElementById('ship-status');
   window.toolboxManager.adCount = document.querySelectorAll('#toolbox .ad').length;
   if (window.budgetManager.pages){
+    var complete = false;
     console.log('Check pages');
-    window.budgetManager.pages.forEach(function(page){
+    window.budgetManager.pages.forEach(function(page, index){
       if (page.wordcount <= 0 && page.adCount <= 0){
         statusCheckIn.innerText = 'You can\'t ship a paper with an empty page.';
+        complete = true;
         return false;
       }
+      var squareValue = 0;
+      var containers = document.querySelectorAll('#page-'+(index+1).toString()+' div');
+      containers.forEach(function(pageInnerEl){
+        if (pageInnerEl.hasAttribute('data-square-value')){
+          squareValue += parseInt(pageInnerEl.getAttribute('data-square-value'));
+        }
+      });
+      if (squareValue < 9){
+        //statusCheckIn.innerText = 'You can\'t ship a paper with an incomplete page.';
+        //complete = true;
+        //return false;
+        console.log('#page-'+(index+1).toString()+' is incomplete', squareValue);
+      }
     });
-        if (window.toolboxManager.adCount > 0){
+    if (complete){
+      return false;
+    }
+    if (window.toolboxManager.adCount > 0){
       statusCheckIn.innerText = 'You have to place all sold ads.';
       return false;
     }
@@ -182,6 +202,7 @@ function shipPaper(){
       statusCheckIn.innerText = 'You didn\'t even break even! You\'re bankrupt';
       return false;
     }
+    
     statusCheckIn.innerText = 'You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString();
     return true;
   } else {
