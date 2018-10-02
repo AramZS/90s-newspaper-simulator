@@ -184,14 +184,17 @@
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores);
-            if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < .5){
+            if (Math.ceil(printedStores)/this.pageCount < .6){
                 goodStoryValue = -2000*this.pageCount;
             } else if (Math.ceil(printedStores+(printedStores*.5))/this.pageCount < 1){
-                goodStoryValue = goodStoryValue/2;
+                goodStoryValue = (goodStoryValue/2)*10;
             } else if (Math.ceil(printedStores)/this.pageCount > 2) {
                 goodStoryValue += goodStoryValue/4;
+                goodStoryValue = goodStoryValue*10;
             }
-            return Math.floor((this.distribution) + (goodStoryValue*10) + this.distributionFactor);
+            var newDist = Math.floor((this.distribution) + (goodStoryValue) + this.distributionFactor);
+            // dispatchDistributionChange({data: newDist});
+            return newDist;
           },
           addDistribution: function(x) {
             this.distribution += x;

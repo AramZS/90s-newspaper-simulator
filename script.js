@@ -339,6 +339,7 @@ function trackPageDrags(){
                 console.log('append child', e.data.overContainer, e.data.source);
                 e.data.overContainer.appendChild(e.data.source);
                 e.data.overContainer.classList.add('valid');
+                dispatchDistributionChange({detail: window.budgetManager.getDistribution()});
               } 
             } else {
                 console.log('non toolbox append child', e.data.overContainer, e.data.source);
