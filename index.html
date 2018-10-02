@@ -101,7 +101,7 @@
             return this.valueOfAdSquare;
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = (25*((this.getDistribution()/1000)))+(2*this.storyCost);
+            this.valueOfAdSquare = (25*((this.getDistribution()/1000)))+(this.storyCost/2);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
           },
           addValueOfAd: function(x) {
