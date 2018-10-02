@@ -212,7 +212,7 @@ function shipPaper(){
       statusCheckIn.innerText = 'You didn\'t break even! You\'re bankrupt';
       return false;
     }
-    var innerHTMLTwitterButton = ' <a href="https://twitter.com/intent/tweet?button_hashtag=brokenadtech&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-size="large" data-text="I won the 90s Newspaper Simulator Game! I made: $'+Number(window.budgetManager.getBudget()).toLocaleString()+'" data-url="https://newspaper-business-simulator.glitch.me" data-show-count="false">Tweet #brokenadtech</a>';
+    var innerHTMLTwitterButton = ' <a target="_blank" href="https://twitter.com/intent/tweet?button_hashtag=brokenadtech&ref_src=twsrc%5Etfw&url=https://newspaper-business-simulator.glitch.me&text=I won the 90s Newspaper Simulator Game! I made: $'+Number(window.budgetManager.getBudget()).toLocaleString()+'! " class="twitter-hashtag-button" data-size="large" data-text="I won the 90s Newspaper Simulator Game! I made: $'+Number(window.budgetManager.getBudget()).toLocaleString()+'" data-url="https://newspaper-business-simulator.glitch.me" data-show-count="false">Tweet #brokenadtech</a>';
     statusCheckIn.innerHTML = 'You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString() + innerHTMLTwitterButton;
     return true;
   } else {
