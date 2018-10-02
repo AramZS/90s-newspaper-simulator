@@ -12,9 +12,6 @@
     <link rel="stylesheet" href="/style.css">
     <script>
       window.commandSet = [];
-      function init(){
-        var paper = document.getElementById('paper');
-        window.paper = paper;
         function dispatchPageValueChange(dispatchObject){
           var event = new CustomEvent('pageValueChanged', dispatchObject);
           paper.dispatchEvent(event);
@@ -39,6 +36,10 @@
           var event = new CustomEvent('adCountChanged', dispatchObject);
           paper.dispatchEvent(event);
         }
+      function init(){
+        var paper = document.getElementById('paper');
+        window.paper = paper;
+
         window.toolboxManager = {
           adCount: 0,
           storyCount: 0
@@ -194,6 +195,7 @@
                 pageBonus = 0;
             } else if (Math.ceil(printedStores)/this.pageCount < .6){
                 goodStoryValue = -2000*this.pageCount;
+                pageBonus = 2000;
             } else if (Math.ceil(printedStores)/this.pageCount < 1){
                 goodStoryValue = (goodStoryValue/2)*10;
             }  else if (Math.ceil(printedStores)/this.pageCount < 2){
