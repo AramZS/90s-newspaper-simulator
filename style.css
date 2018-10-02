@@ -132,7 +132,7 @@ user-select: none; /* Standard */
 }
 
 .isDraggable {
-
+  cursor: pointer;
 }
 
 .story-default {
