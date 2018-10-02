@@ -13,6 +13,10 @@ h1 {
   color: #373fff;
 }
 
+.hidden {
+  display:none;
+}
+
 #paper {
   width: 68%;
   height: 600px;
