@@ -279,10 +279,10 @@ function trackPageDrags(){
         });
   
         window.draggableObjects.mainObject.on('drag:stop', function(e){
-          console.log('test', e);
+          console.log('test', e, e.source, e.data.source);
           //window.draggableObjects.sample.remove();
-          if (e.data.originalSource != e.data.overContainer){
-            console.log('container move attempt');
+          if (e.data.sourceContainer != e.data.overContainer){
+            console.log('container move attempt', e.data.overContainer);
             // e.data.overContainer.appendChild(e.data.source);
           }
         });
