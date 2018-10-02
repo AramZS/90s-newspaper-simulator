@@ -91,6 +91,9 @@ function shipPaper(){
       alert('You have to place all sold ads.');
       return false;
     }
+    if (window.budgetManager.getBudget() <= 0){
+      alert('You didn\'t even break even! Your bankrupt');
+    }
     alert('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
     return true;
   } else {

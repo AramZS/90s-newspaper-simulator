@@ -90,6 +90,7 @@
           },
           
           getBudget: function(){
+            var distributionCosts = Math.round();
             return this.totalBudget+this.totalAdSales()+((this.pageCount*(-3000-(this.pageCount*20)))+(this.stories*(this.storyCost*-1)));
           },
           totalAdSales: function(){
@@ -217,7 +218,7 @@
   <body>
     <h1>Newspaper Business Simulator</h1>
     <h4>
-      Newspaper Net Profit: <span id="total-budget">-$1,000</span> | Newspaper Distribution: <span id="total-distribution">1,000</span>
+      Newspaper Net Profit: <span id="total-budget">-$1,000</span> | Newspaper Distribution: <span id="total-distribution">1,000</span> | <button class="shinyButton shinyGreen" onclick="shipPaper()">Ship Paper</button>
     </h4>
     <div id="toolbox">
       <h5>
@@ -233,7 +234,7 @@
       </div>
     </div>
     <div id="paper">
-      <div id="page-1" data-page-number="1" class="stacked newspaper__page page-grid draggableContainer">
+      <div id="page-1" data-page-number="1" class="stacked newspaper__page page-grid draggableContainer valid">
 
       </div>
     </div>

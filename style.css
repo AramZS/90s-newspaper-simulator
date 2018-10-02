@@ -45,6 +45,14 @@ h1 {
   overflow: hidden;
 }
 
+.newspaper__page.draggable-container--over.valid {
+  background: #d5ffe6;
+}
+
+.newspaper__page.draggable-container--over.invalid {
+  background: #ffd5d5;
+}
+
 .stacked {
   background: #f9f7f1;
   box-shadow:
