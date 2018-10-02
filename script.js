@@ -281,10 +281,10 @@ function trackPageDrags(){
         window.draggableObjects.mainObject.on('drag:stop', function(e){
           console.log('test', e, e.source, e.data.source);
           //window.draggableObjects.sample.remove();
-          if (e.data.sourceContainer != e.data.overContainer){
             console.log('container move attempt', e.data.overContainer);
-            // e.data.overContainer.appendChild(e.data.source);
-          }
+            var rowCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-rows']).split(' ').length;
+            var colCount = (window.getComputedStyle(e.data.source.parentElement)['grid-template-columns']).split(' ').length;
+            console.log('rows', rowCount, 'cols', colCount);
         });
 }
 
