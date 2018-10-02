@@ -121,25 +121,28 @@ function addNewAdToPage(pageNumber, adType){
 }
 
 function shipPaper(){
+  console.log('Trying to ship');
+  var statusCheckIn = document.getElementById('ship-status');
   if (window.budgetManager.pages){
+    console.log('Check pages');
     window.budgetManager.pages.forEach(function(page){
       if (page.wordcount <= 0 && page.adCount <= 0){
-        document.getElementById('ship-status').innerHTML('You can\'t ship a paper with an empty page.');
+        statusCheckIn.innerText = 'You can\'t ship a paper with an empty page.';
         return false;
       }
     });
     if (window.toolboxManager.adCount > 0){
-      document.getElementById('ship-status').innerHTML('You have to place all sold ads.');
+      statusCheckIn.innerText = 'You have to place all sold ads.';
       return false;
     }
     if (window.budgetManager.getBudget() <= 0){
-      document.getElementById('ship-status').innerHTML('You didn\'t even break even! Your bankrupt');
+      statusCheckIn.innerText = 'You didn\'t even break even! You\'re bankrupt';
       return false;
     }
-    document.getElementById('ship-status').innerHTML('You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString());
+    statusCheckIn.innerText = 'You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString();
     return true;
   } else {
-    document.getElementById('ship-status').innerHTML('No pages');
+    statusCheckIn.innerText = 'No pages';
     return false;
   }
 }
