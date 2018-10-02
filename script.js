@@ -312,8 +312,10 @@ function trackPageDrags(){
             }
           }
           const containers = document.querySelectorAll('.newspaper__page');
-          containers.classList.remove('valid');
-          containers.classList.remove('invalid');
+          containers.forEach(function(e){ 
+            e.classList.remove('valid'); 
+            e.classList.remove('invalid');
+          });
         });
 }
 
