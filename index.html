@@ -91,7 +91,7 @@
           
           getBudget: function(){
             var distributionCosts = Math.round(this.getDistribution()/1000)*10;
-            return this.totalBudget+this.totalAdSales()+((this.pageCount*(-3000-(this.pageCount*20)))+(this.stories*(this.storyCost*-1)))+(distributionCosts*-1);
+            return this.totalBudget+this.totalAdSales()+((this.pageCount*(-4000-(this.pageCount*20)))+(this.stories*(this.storyCost*-1)))+(distributionCosts*-1);
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();
@@ -101,7 +101,7 @@
             return this.valueOfAdSquare;
           },
           setValueOfAd: function() {
-            this.valueOfAdSquare = (25*((this.distribution/1000)))+(2*this.storyCost);
+            this.valueOfAdSquare = (25*((this.getDistribution()/1000)))+(2*this.storyCost);
             dispatchAdValueChange({detail: this.valueOfAdSquare});
           },
           addValueOfAd: function(x) {
@@ -130,6 +130,26 @@
           getTotalWordCount: function() { 
             return this.wordcount;
           },
+          onFlyWordCount: function(stoiries){
+            var distributionBonus = 0;
+             if ((this.wordcount % 1375) == 0){
+              this.storyCost = 650;
+              this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
+              //this.addDistribution(this.storyDistributionFactor);
+              distributionBonus = this.storyDistributionFactor;
+            },
+            if ((this.wordcount % 2750) == 0){
+              this.storyCost = 1200;
+              distributionBonus += this.storyDistributionFactor;
+              //this.addDistribution(this.storyDistributionFactor);
+            }
+            if ((this.wordcount % 13750) == 0){
+              this.storyCost = 1850;
+              distributionBonus += this.storyDistributionFactor;
+              //this.addDistribution(this.storyDistributionFactor*2);
+            }
+            return distributionBonus;
+          },
           addWordcount: function(x) {
             this.wordcount += x;
             if ((this.wordcount % 1375) == 0){
@@ -148,7 +168,9 @@
           },
           
           getDistribution: function() { 
-            return this.distribution;
+            var printedStores = document.querySelectorAll('#toolbox .ad').length;
+            var goodStoryValue = this.onFlyWordCount(printedStores);
+            return this.distribution + goodStoryValue;
           },
           addDistribution: function(x) {
             this.distribution += x;

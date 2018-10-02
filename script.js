@@ -35,6 +35,7 @@ function addNewStoryToPage(pageNumber, storyType){
   newStory.className = 'isDraggable story '+storyType;
   window.budgetManager.addStories(1);
   newStory.innerText += ipsumAdd(275); 
+  newStory.setAttribute('data-square-value', 2);
   window.budgetManager.pages[(pageNumber-1)].wordcount += 275
   window.budgetManager.addWordcount(275);
   page.appendChild(newStory);
@@ -46,6 +47,7 @@ function addStoryToToolbox(){
   newStory.id = 'story-'+window.budgetManager.getStories();
   newStory.className = 'story story-preview story-default isDraggable';
   window.budgetManager.addStories(1);
+  newStory.setAttribute('data-square-value', 2);
   newStory.innerText += ipsumAdd(275);
   toolbox.appendChild(newStory);
     window.toolboxManager.storyCount += 1;
@@ -96,6 +98,7 @@ function addAdToToolbox(){
   }
   newAd.className = 'ad ad-preview isDraggable ad-'+classNameForAd;
   newAd.setAttribute('data-ad-value', adValue);
+  newAd.setAttribute('data-square-value', adValue);
   newAd.innerHTML = 'Ad: <span class="ad-name">'+adName+'</span>';
   toolbox.appendChild(newAd);
   window.budgetManager.addAdCount(adValue);
