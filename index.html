@@ -91,7 +91,7 @@
           
           getBudget: function(){
             var distributionCosts = Math.round(this.getDistribution()/1000)*10;
-            return this.totalBudget+this.totalAdSales()+((this.pageCount*(-4000-(this.pageCount*20)))+(this.stories*(this.storyCost*-1)))+(distributionCosts*-1);
+            return this.totalBudget+this.totalAdSales()-((this.pageCount*(4000+(this.pageCount*20))))-(this.stories*(this.storyCost))-(distributionCosts);
           },
           totalAdSales: function(){
             return this.getAdCount() * this.getValueOfAd();

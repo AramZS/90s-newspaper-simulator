@@ -89,7 +89,7 @@ function addAdToToolbox(){
       adName = '3x1';
       break;    
     case 6:
-      classNameForAd = 'full-height';
+      classNameForAd = 'two-thir';
       adValue = 6;
       adName = '3x2';
       break;        
