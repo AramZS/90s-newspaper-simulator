@@ -184,10 +184,10 @@ function shipPaper(){
           squareValue += parseInt(pageInnerEl.getAttribute('data-square-value'));
         }
       });
-      if (squareValue < 9){
-        //statusCheckIn.innerText = 'You can\'t ship a paper with an incomplete page.';
-        //complete = true;
-        //return false;
+      if (squareValue < 8){
+        statusCheckIn.innerText = 'You can\'t ship a paper with more than one blank square per page.';
+        complete = true;
+        return false;
         console.log('#page-'+(index+1).toString()+' is incomplete', squareValue);
       }
     });

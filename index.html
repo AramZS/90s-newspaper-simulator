@@ -50,7 +50,7 @@
           distribution: 1000,
           valueOfAdSquare: 50,
           pageDistributionFactor: 1500,
-          storyDistributionFactor: 100,
+          storyDistributionFactor: 20,
           storyCost: 450,
           wordcount: 0,
           adCount: 0,
@@ -176,7 +176,7 @@
           
           getDistribution: function() { 
             var printedStores = document.querySelectorAll('.newspaper__page .story').length;
-            var goodStoryValue = this.onFlyWordCount(printedStores);
+            var goodStoryValue = this.onFlyWordCount(printedStores)/10;
             return this.distribution + goodStoryValue;
           },
           addDistribution: function(x) {
