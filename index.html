@@ -50,7 +50,7 @@
           distribution: 1000,
           valueOfAdSquare: 50,
           pageDistributionFactor: 1500,
-          storyDistributionFactor: 1750,
+          storyDistributionFactor: 100,
           storyCost: 450,
           wordcount: 0,
           adCount: 0,
@@ -130,20 +130,21 @@
           getTotalWordCount: function() { 
             return this.wordcount;
           },
-          onFlyWordCount: function(stoiries){
+          onFlyWordCount: function(stories){
             var distributionBonus = 0;
-             if ((this.wordcount % 1375) == 0){
+            var wordcount = stories*275;
+             if ((wordcount % 1375) == 0){
               this.storyCost = 650;
               this.storyDistributionFactor = this.storyDistributionFactor * (this.wordcount/1375);
               //this.addDistribution(this.storyDistributionFactor);
               distributionBonus = this.storyDistributionFactor;
-            },
-            if ((this.wordcount % 2750) == 0){
+            }
+            if ((wordcount % 2750) == 0){
               this.storyCost = 1200;
               distributionBonus += this.storyDistributionFactor;
               //this.addDistribution(this.storyDistributionFactor);
             }
-            if ((this.wordcount % 13750) == 0){
+            if ((wordcount % 13750) == 0){
               this.storyCost = 1850;
               distributionBonus += this.storyDistributionFactor;
               //this.addDistribution(this.storyDistributionFactor*2);
@@ -168,9 +169,9 @@
           },
           
           getDistribution: function() { 
-            var printedStores = document.querySelectorAll('#toolbox .ad').length;
+            var printedStores = document.querySelectorAll('.newspaper__page .story').length;
             var goodStoryValue = this.onFlyWordCount(printedStores);
-            return this.distribution + goodStoryValue;
+            return this.distribution;// + goodStoryValue;
           },
           addDistribution: function(x) {
             this.distribution += x;

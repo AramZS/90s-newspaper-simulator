@@ -37,7 +37,7 @@ function addNewStoryToPage(pageNumber, storyType){
   newStory.innerText += ipsumAdd(275); 
   newStory.setAttribute('data-square-value', 2);
   window.budgetManager.pages[(pageNumber-1)].wordcount += 275
-  window.budgetManager.addWordcount(275);
+  //window.budgetManager.addWordcount(275);
   page.appendChild(newStory);
 }
 
@@ -88,7 +88,7 @@ function addAdToToolbox(){
       adValue = 3;
       adName = '3x1';
       break;    
-    case 5:
+    case 6:
       classNameForAd = 'full-height';
       adValue = 6;
       adName = '3x2';
@@ -174,7 +174,7 @@ function shipPaper(){
         return false;
       }
     });
-    if (window.toolboxManager.adCount > 0){
+        if (window.toolboxManager.adCount > 0){
       statusCheckIn.innerText = 'You have to place all sold ads.';
       return false;
     }
