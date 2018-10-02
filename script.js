@@ -156,11 +156,14 @@ function rotateStorySize(e){
 
   if (e.classList.contains('story-default')){
     e.classList.replace('story-default', 'story-skinny');
+    e.setAttribute('data-square-value', 2);
   } else if (e.classList.contains('story-skinny')) {
       e.classList.replace('story-skinny', 'story-wide');    
+    e.setAttribute('data-square-value', 3);
   } else if (e.classList.contains('story-wide')) {
-    e.classList.replace('story-wide', 'story-default');   
-  } else { e.classList.add('story-default') }
+    e.classList.replace('story-wide', 'story-default');
+    e.setAttribute('data-square-value', 2);
+  } else { e.classList.add('story-default'); e.setAttribute('data-square-value', 2); }
           
 }
 
@@ -210,7 +213,7 @@ function shipPaper(){
       return false;
     }
     
-    statusCheckIn.innerText = 'You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString();
+    statusCheckIn.innerHTML = 'You\'ve shipped the newspaper! Your total score is: $'+Number(window.budgetManager.getBudget()).toLocaleString();
     return true;
   } else {
     statusCheckIn.innerText = 'No pages';
