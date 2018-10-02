@@ -206,7 +206,7 @@ function shipPaper(){
       return false;
     }
     if (window.budgetManager.getBudget() <= 0){
-      statusCheckIn.innerText = 'You didn\'t even break even! You\'re bankrupt';
+      statusCheckIn.innerText = 'You didn\'t break even! You\'re bankrupt';
       return false;
     }
     
