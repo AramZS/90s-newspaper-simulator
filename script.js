@@ -13,6 +13,7 @@ function pageAdd(){
   page_clone.setAttribute('id', 'page-'+window.budgetManager.getPages());
   page_clone.setAttribute('data-page-number', window.budgetManager.getPages());
   paper.appendChild(page_clone);
+  makePagesDraggable();
 }
 
 function ipsumAdd(charCount){

@@ -125,7 +125,7 @@ button.shinyButton:hover{
   grid-column: auto / span 3;  
 }
 
-.old-story-preview {
+.draggable-mirror.story {
     width: 154px;
     height: 152px;  
 }
@@ -176,9 +176,9 @@ button.shinyButton:hover{
   background: #f5dac6; 
 }
 
-.old-ad-preview {
-    height: 152px;
-      width: 154px;
+.draggable-mirror.ad {
+    height: 100px;
+      width: 102px;
 }
 
 .page-grid > .ad {
