@@ -132,7 +132,8 @@ button.shinyButton:hover{
 }
 
 .story-wide {
-  grid-column: auto / span 3;  
+  grid-column: auto / span 3; 
+  grid-row: auto / span 1;
 }
 
 .draggable-mirror.story {
