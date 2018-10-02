@@ -269,6 +269,7 @@ function trackPageDrags(){
   
         window.draggableObjects.mainObject.on('drag:over:container', function(e){
           console.log('toolboxDrag Over Container', e);
+
           window.draggableObjects.previouslyOver = e.data.originalSource;
           var oldClassname = JSON.stringify(e.data.overContainer.className);
           if (e.data.originalSource != e.data.overContainer){
@@ -283,14 +284,17 @@ function trackPageDrags(){
               if ((rowCount > 3) || (colCount > 3)){
                 console.log('drag attempt rejected');
                 document.getElementById('toolbox_grid').appendChild(e.data.source);
+                e.data.overContainer.classList.add('invalid');
               } else {
                 console.log('append child', e.data.overContainer, e.data.source);
                 e.data.overContainer.appendChild(e.data.source);
+                e.data.overContainer.classList.add('valid');
               } 
             } else {
                 console.log('non toolbox append child', e.data.overContainer, e.data.source);
                 e.data.overContainer.appendChild(e.data.source);
-              }
+                e.data.overContainer.classList.add('valid');
+            }
           }
         });
   
@@ -307,6 +311,9 @@ function trackPageDrags(){
               document.getElementById('toolbox_grid').appendChild(e.data.source);
             }
           }
+          const containers = document.querySelectorAll('.newspaper__page');
+          containers.classList.remove('valid');
+          containers.classList.remove('invalid');
         });
 }
 
