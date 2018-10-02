@@ -122,6 +122,19 @@ function addNewAdToPage(pageNumber, adType){
 
 function determineViability(pageGrid, gridWidth, gridHeight){
   pageGrid = [[1,1,1],[1,1,1],[1,1,1]];
+  pageGrid.forEach(function(row){
+    
+  });
+}
+
+function setGrid(pageGrid, gridWidth, gridHeight){
+  pageGrid = [[1,1,1],[1,1,1],[1,1,1]];
+  pageGrid.forEach(function(row){
+    var i;
+    for (i = 0; i < gridWidth; i++) { 
+        row += cars[i] + "<br>";
+    }
+  });
 }
 
 function rotateStorySize(){
