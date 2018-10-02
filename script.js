@@ -128,11 +128,21 @@ function determineViability(pageGrid, gridWidth, gridHeight){
 }
 
 function setGrid(pageGrid, gridWidth, gridHeight){
+  var row = -1;
   pageGrid = [[1,1,1],[1,1,1],[1,1,1]];
-  pageGrid.forEach(function(row){
+  pageGrid.forEach(function(row, index){
     var i;
-    for (i = 0; i < gridWidth; i++) { 
-        row += cars[i] + "<br>";
+    var widthTest = gridWidth;
+    for (i = 0; i < 2; i++) { 
+        widthTest -= row[i];
+    }
+    if (widthTest <= 0){
+      row = index;
+      for (i = 0; i < 2; i++) { 
+        if (row[i] > 0){
+          row[i] = 0;
+        }
+      }
     }
   });
 }
