@@ -29,6 +29,14 @@ function ipsumAdd(charCount){
   return HolderIpsum.words(150, false)+'. '+continuation;
 }
 
+function showInstructions() {
+  var toggle = document.getElementById('instruction-toggle');
+  var instructions = document.getElementById('instructions');
+    toggle.addEventListener("click", function(e){
+    instructions.classList.toggle("hidden");
+  });
+}
+
 function addNewStoryToPage(pageNumber, storyType){
   var page = document.getElementById('page-'+pageNumber.toString()); 
   var newStory = document.createElement('div');
@@ -262,6 +270,7 @@ function articleTransformer(){
             (document.readyState !== "loading" && !document.documentElement.doScroll)
         ) {
           scriptInit();
+          showInstructions();
         } else {
           document.addEventListener("DOMContentLoaded", scriptInit);
         }
