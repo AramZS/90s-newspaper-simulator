@@ -5,7 +5,6 @@ This is a 90s Newspaper Business Simulator. It is intended to demonstrate ad pla
 
 It is intended to have voiced instructions. Also, you need to turn your ad blocker off because it pattern matches on the ad divs this uses and considers them to be web ads. 
 
-
 Welcome to Glitch
 =================
 
